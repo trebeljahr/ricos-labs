@@ -295,7 +295,7 @@ export const PlasmaBall = () => {
             material={plasmaMaterial}
             ref={(elem) => {
               if (elem) {
-                contactPointRefs.current.push(elem);
+                contactPointRefs.current[index] = elem;
               }
             }}
           />
@@ -308,7 +308,7 @@ export const PlasmaBall = () => {
             material={plasmaMaterial}
             ref={(elem) => {
               if (elem) {
-                lightningRefs.current.push(elem);
+                lightningRefs.current[index] = elem;
               }
             }}
           />
