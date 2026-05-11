@@ -1,16 +1,18 @@
 {
   "version": 1,
-  "cliVersion": "0.1.39",
-  "scaffoldedAt": "2026-05-11T09:51:39.954Z",
+  "cliVersion": "0.1.42",
+  "scaffoldedAt": "2026-05-11T23:09:00.299Z",
   "name": "ricos-labs",
   "domain": "ricoslabs.com",
+  "description": "Ricos Labs LLC Company Website",
   "features": [],
   "mlServices": [],
   "s3Provider": "none",
   "deployTarget": "existing",
-  "surfaces": "client-only",
+  "deploymentMode": "coolify",
   "ports": {
-    "server": 5720,
-    "client": 6457
-  }
+    "server": 3000,
+    "client": 3001
+  },
+  "surfaces": "client-only"
 }
