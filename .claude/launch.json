@@ -4,7 +4,7 @@
     {
       "name": "client",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--config.run-deps-status-check=false", "--filter", "@starter/client", "exec", "next", "dev", "--port", "57342"],
+      "runtimeArgs": ["--filter", "@starter/client", "exec", "next", "dev", "--port", "57342"],
       "port": 57342
     },
     {
