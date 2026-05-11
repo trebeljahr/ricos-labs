@@ -2,7 +2,7 @@
   "name": "ricos-labs",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@11.1.0",
   "engines": {
     "node": ">=22.0.0"
   },
@@ -24,5 +24,12 @@
     "mongodb": "^6.12.0",
     "typescript": "^5.7.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@sentry/cli",
+      "esbuild",
+      "sharp"
+    ]
+  }
 }
