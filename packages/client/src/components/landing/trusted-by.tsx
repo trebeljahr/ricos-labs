@@ -3,8 +3,8 @@ const trustedBy = [
   { name: "Klarna", short: "Klarna", detail: "Payments infrastructure" },
   { name: "Henkel", short: "Henkel", detail: "Internal tooling" },
   { name: "flowkey", short: "flowkey", detail: "Music education product" },
-  { name: "Ironhack", short: "Ironhack", detail: "Taught 60+ developers" },
   { name: "Softgames", short: "Softgames", detail: "HTML5 game engineering" },
+  { name: "Ironhack", short: "Ironhack", detail: "Engineering instruction" },
 ];
 
 export function TrustedBy() {
@@ -14,7 +14,8 @@ export function TrustedBy() {
         <div className="mb-10 max-w-2xl">
           <div className="eyebrow">Track record</div>
           <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl">
-            Production work for, and teaching at —
+            Production work, and a stint{" "}
+            <span className="italic">teaching</span> it.
           </h2>
         </div>
         <ul className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-foreground/10 pt-8 sm:grid-cols-3 lg:grid-cols-6">

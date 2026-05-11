@@ -15,7 +15,8 @@
     "dev:infra": "docker-compose -f docker-compose.dev.yml up -d",
     "dev:infra:stop": "docker-compose -f docker-compose.dev.yml down",
     "dev:infra:reset": "docker-compose -f docker-compose.dev.yml down -v",
-    "typecheck": "pnpm -r run typecheck"
+    "typecheck": "pnpm -r run typecheck",
+    "screenshots": "node scripts/capture-project-screenshots.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.50.0",
