@@ -35,8 +35,7 @@ export function Contact() {
           <div className="max-w-xl">
             <div className="eyebrow">Contact</div>
             <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-              Let&apos;s build something <span className="italic">small</span>{" "}
-              and well-made.
+              Let&apos;s build something <span className="italic">well-made</span>.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-foreground/75">
               Open for new projects, partnerships, and collaborations.
