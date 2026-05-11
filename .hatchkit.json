@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "cliVersion": "0.1.39",
+  "scaffoldedAt": "2026-05-11T09:51:39.954Z",
+  "name": "ricos-labs",
+  "domain": "ricoslabs.com",
+  "features": [],
+  "mlServices": [],
+  "s3Provider": "none",
+  "deployTarget": "existing",
+  "surfaces": "client-only",
+  "ports": {
+    "server": 5720,
+    "client": 6457
+  }
+}
