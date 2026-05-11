@@ -94,6 +94,25 @@
   }
 }
 
+@layer base {
+  /* Respect reduced-motion preferences. Kills smooth scrolling, transitions,
+     and CSS animations for users who ask for less motion. The 3D scenes
+     keep running because they are gated separately. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
 @layer utilities {
   .container-narrow {
     @apply mx-auto w-full max-w-6xl px-6;
