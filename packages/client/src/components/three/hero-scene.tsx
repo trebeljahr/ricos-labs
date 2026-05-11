@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import { OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Bloom, EffectComposer, ToneMapping } from "@react-three/postprocessing";
 import { PlasmaBall } from "./plasma-ball";
@@ -15,9 +15,9 @@ export function HeroScene() {
       camera={{ position: [0, 15, 45], fov: 35 }}
     >
       <Suspense fallback={null}>
-        <color attach="background" args={["#121524"]} />
         <ambientLight intensity={1} />
-        <directionalLight position={[20, 30, 20]} intensity={1.2} />
+        <Environment preset="city" background={false} environmentIntensity={0.4} />
+        <color attach="background" args={["#121524"]} />
         <group position={[0, -15, 0]}>
           <PlasmaBall />
         </group>
