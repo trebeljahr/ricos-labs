@@ -12,7 +12,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden paper-grain">
       <div className="container-narrow relative pt-16 pb-20 sm:pt-24 sm:pb-28">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr,1fr]">
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr,1.05fr]">
           <div className="relative z-10 max-w-2xl">
             <div className="eyebrow">An independent studio · est. 2026</div>
 
@@ -63,7 +63,7 @@ export function Hero() {
             </dl>
           </div>
 
-          <div className="relative mx-auto aspect-square w-full max-w-[520px]">
+          <div className="relative mx-auto aspect-square w-full max-w-[640px]">
             {/* Soft outer halo on the page so the dark panel sits naturally on cream. */}
             <div
               aria-hidden
