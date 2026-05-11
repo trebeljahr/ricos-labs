@@ -3,7 +3,7 @@ export const siteConfig = {
   legalName: "Ricos Labs LLC",
   tagline: "An independent software studio building games, real-time apps, and developer tools.",
   description:
-    "Ricos Labs is an independent software studio. We design and ship multiplayer games, 3D graphics demos, content platforms, and cross-platform applications — all from a single TypeScript codebase, end to end.",
+    "Ricos Labs is an independent software studio. We design and ship multiplayer games, 3D graphics demos, content platforms, and cross-platform apps. One TypeScript codebase, browser to mobile.",
   domain: "ricoslabs.com",
   url: "https://ricoslabs.com",
 

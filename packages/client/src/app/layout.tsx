@@ -26,7 +26,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.legalName} — ${siteConfig.tagline}`,
+    default: `${siteConfig.legalName} · ${siteConfig.tagline}`,
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -48,12 +48,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.legalName} — ${siteConfig.tagline}`,
+    title: `${siteConfig.legalName} · ${siteConfig.tagline}`,
     description: siteConfig.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.legalName} — ${siteConfig.tagline}`,
+    title: `${siteConfig.legalName} · ${siteConfig.tagline}`,
     description: siteConfig.description,
   },
 };

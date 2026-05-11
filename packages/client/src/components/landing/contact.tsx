@@ -5,7 +5,7 @@ const facts = [
     label: "Email",
     value: siteConfig.contact.email,
     href: `mailto:${siteConfig.contact.email}`,
-    detail: "Rough sketches, pitches, RFPs — all welcome.",
+    detail: "Rough sketches, pitches, RFPs. All welcome.",
   },
   {
     label: "Engagements",
@@ -32,12 +32,13 @@ export function Contact() {
           <div className="max-w-xl">
             <div className="eyebrow">Contact</div>
             <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-              Let&apos;s build something <span className="italic">well-made</span>.
+              Got something <span className="italic">ambitious</span>?
+              Let&apos;s ship it.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-foreground/75">
-              Open for new projects, partnerships, and collaborations. Bring a
-              rough sketch — we&apos;ll figure out what it wants to be, scope
-              the smallest version that proves it works, and ship from there.
+              Open for new projects, partnerships, and collaborations. Bring
+              a rough sketch and we&apos;ll scope the smallest version that
+              proves it works, then ship from there.
             </p>
             <a
               href={`mailto:${siteConfig.contact.email}`}

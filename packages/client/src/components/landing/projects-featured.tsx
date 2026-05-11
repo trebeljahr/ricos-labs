@@ -14,8 +14,8 @@ export function ProjectsFeatured() {
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-foreground/65">
-            Each is live in production. All open source. Built end-to-end —
-            design, frontend, backend, infrastructure, distribution.
+            All live in production. All open source. We did the design, the
+            code, the servers, and the ship.
           </p>
         </div>
 

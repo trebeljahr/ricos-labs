@@ -1,15 +1,15 @@
 const capabilities = [
   {
     title: "Real-time multiplayer",
-    body: "Authoritative servers, WebSocket protocols, matchmaking, tournaments, lag compensation, Redis-backed locks. Game and app infrastructure that holds up in production.",
+    body: "Authoritative WebSocket servers, matchmaking, tournaments, lag compensation, Redis-backed locks. Infrastructure that survives real players.",
   },
   {
     title: "3D graphics & shaders",
-    body: "React Three Fiber, Three.js, hand-written GLSL. Procedural generation, post-processing, voxel meshing, fractal exhibitions, scientific visualisation.",
+    body: "React Three Fiber, Three.js, hand-written GLSL. Procedural terrain, voxel meshing, post-processing, fractal exhibitions, scientific visualisation.",
   },
   {
     title: "Game development",
-    body: "Canvas 2D engines from scratch — physics, particles, parallax, day/night cycles, save states, cosmetics, in-game shops, achievements. The whole stack.",
+    body: "Canvas 2D engines from scratch. Physics, particles, parallax, day/night cycles, save states, cosmetics, in-game shops, achievements.",
   },
   {
     title: "Cross-platform delivery",
@@ -17,11 +17,11 @@ const capabilities = [
   },
   {
     title: "Full-stack TypeScript",
-    body: "Next.js, Express, tRPC, MongoDB, Redis, S3-compatible storage, better-auth, Stripe, encrypted secrets, Sentry, OpenPanel — wired together cleanly.",
+    body: "Next.js, Express, tRPC, MongoDB, Redis, S3, better-auth, Stripe, Sentry, OpenPanel. Encrypted secrets in git. Boring infra, well plumbed.",
   },
   {
     title: "Tooling & content",
-    body: "Published npm CLIs, MDX content platforms, static-site publishing, design systems, and CI/CD pipelines for repeatable multi-target shipping.",
+    body: "Published npm CLIs, MDX content platforms, design systems, CI/CD pipelines. Repeatable ship rituals across web, desktop, and mobile.",
   },
 ];
 
@@ -32,8 +32,8 @@ export function Capabilities() {
         <div className="mb-14 max-w-2xl">
           <div className="eyebrow">What the studio does</div>
           <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-            We&apos;re comfortable across the whole stack — and most of it has
-            already shipped to <span className="italic">production</span>.
+            Six things we do well. Most of it is already running in{" "}
+            <span className="italic">production</span>.
           </h2>
         </div>
 
