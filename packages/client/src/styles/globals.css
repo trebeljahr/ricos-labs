@@ -32,6 +32,34 @@
     --paper-2: 36 28% 93%;
     --paper-3: 36 22% 88%;
   }
+
+  .dark {
+    /* Dark ink background, warm paper text, slightly brighter rust accent. */
+    --background: 220 28% 7%;
+    --foreground: 36 28% 92%;
+    --card: 220 24% 11%;
+    --card-foreground: 36 28% 92%;
+    --primary: 14 70% 58%;
+    --primary-foreground: 220 30% 10%;
+    --secondary: 220 18% 16%;
+    --secondary-foreground: 36 28% 92%;
+    --muted: 220 18% 16%;
+    --muted-foreground: 36 14% 70%;
+    --accent: 220 18% 20%;
+    --accent-foreground: 36 28% 92%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 36 28% 95%;
+    --border: 36 16% 22%;
+    --input: 36 16% 22%;
+    --ring: 14 70% 58%;
+
+    --ink-1: 36 28% 92%;
+    --ink-2: 36 18% 78%;
+    --ink-3: 36 12% 60%;
+    --paper-1: 220 28% 7%;
+    --paper-2: 220 24% 11%;
+    --paper-3: 220 18% 16%;
+  }
 }
 
 @layer base {
@@ -41,6 +69,9 @@
   html {
     color-scheme: light;
     scroll-behavior: smooth;
+  }
+  html.dark {
+    color-scheme: dark;
   }
   body {
     @apply bg-background text-foreground antialiased;
@@ -54,6 +85,12 @@
     font-family: var(--font-display), Georgia, "Times New Roman", serif;
     font-feature-settings: "ss01", "ss02";
     letter-spacing: -0.01em;
+  }
+  /* Visible focus ring for keyboard nav; respected by all interactive bits. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 }
 
@@ -78,5 +115,24 @@
   }
   .link-underline {
     @apply underline decoration-primary/50 decoration-1 underline-offset-[3px] transition hover:decoration-primary;
+  }
+  /* Accessible skip link revealed on focus only. */
+  .skip-to-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-200%);
+    z-index: 60;
+    margin: 0.75rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: 6px;
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+    font-size: 0.875rem;
+    transition: transform 0.15s ease;
+  }
+  .skip-to-content:focus-visible {
+    transform: translateY(0);
+    outline: none;
   }
 }

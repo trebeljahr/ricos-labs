@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
+import { ThemeToggle } from "./theme-toggle";
 
 const navLinks = [
   { href: "#projects", label: "Work" },
@@ -19,7 +20,7 @@ export function Nav() {
             LLC
           </span>
         </Link>
-        <nav className="hidden items-center gap-8 text-sm md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-8 text-sm md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -30,12 +31,15 @@ export function Nav() {
             </a>
           ))}
         </nav>
-        <a
-          href={`mailto:${siteConfig.contact.email}`}
-          className="hidden h-9 items-center rounded-md border border-foreground/20 px-3.5 text-sm font-medium text-foreground transition hover:bg-foreground hover:text-background md:inline-flex"
-        >
-          Write us
-        </a>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <a
+            href={`mailto:${siteConfig.contact.email}`}
+            className="hidden h-9 items-center rounded-md border border-foreground/20 px-3.5 text-sm font-medium text-foreground transition hover:bg-foreground hover:text-background md:inline-flex"
+          >
+            Write us
+          </a>
+        </div>
       </div>
     </header>
   );

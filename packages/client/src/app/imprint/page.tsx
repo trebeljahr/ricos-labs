@@ -28,7 +28,7 @@ export default function ImprintPage() {
   return (
     <>
       <Nav />
-      <main className="border-b border-border/40 py-16 sm:py-24">
+      <main id="main" className="border-b border-border/40 py-16 sm:py-24">
         <div className="container-narrow max-w-3xl">
           <Link
             href="/"

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { siteConfig } from "@/lib/site-config";
 import "@/styles/globals.css";
 
@@ -81,7 +82,10 @@ export default function RootLayout({
         )}
       </head>
       <body className="min-h-screen bg-background text-foreground font-sans">
-        {children}
+        <a href="#main" className="skip-to-content">
+          Skip to content
+        </a>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
