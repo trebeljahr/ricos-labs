@@ -64,35 +64,20 @@ export function Hero() {
           </div>
 
           <div className="relative mx-auto aspect-square w-full max-w-[520px]">
-            {/* Soft outer halo on the page so the dark orb sits naturally on cream. */}
+            {/* Soft outer halo on the page so the dark panel sits naturally on cream. */}
             <div
               aria-hidden
-              className="absolute inset-[-12%] rounded-full opacity-70 blur-3xl"
+              className="absolute inset-[-12%] rounded-3xl opacity-70 blur-3xl"
               style={{
                 background:
-                  "radial-gradient(closest-side, rgba(160,75,255,0.22), rgba(90,139,255,0.08) 55%, transparent 75%)",
+                  "radial-gradient(closest-side, rgba(242,0,255,0.22), rgba(90,139,255,0.08) 55%, transparent 75%)",
               }}
             />
-            {/* The glass vessel — dark interior so the plasma reads. */}
-            <div
-              className="absolute inset-0 overflow-hidden rounded-full ring-1 ring-foreground/20 shadow-[0_30px_80px_-30px_rgba(20,15,35,0.55)]"
-              style={{
-                background:
-                  "radial-gradient(circle at 50% 45%, #1b1530 0%, #0c0a1a 60%, #06050f 100%)",
-              }}
-            >
+            {/* Dark display panel — the real plasma lamp lives inside. */}
+            <div className="absolute inset-0 overflow-hidden rounded-3xl ring-1 ring-foreground/20 shadow-[0_30px_80px_-30px_rgba(20,15,35,0.55)] bg-[#121524]">
               <HeroScene />
-              {/* Specular highlight on the glass. */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 rounded-full"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 32% 22%, rgba(255,255,255,0.18), transparent 35%)",
-                }}
-              />
             </div>
-            <div className="pointer-events-none absolute -bottom-1 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/40">
+            <div className="pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/40">
               touch the glass
             </div>
           </div>
