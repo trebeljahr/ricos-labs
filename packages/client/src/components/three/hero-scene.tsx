@@ -231,7 +231,7 @@ export function HeroScene() {
   return (
     <Canvas
       className="!absolute inset-0"
-      camera={{ position: [0, 0, 4.2], fov: 38 }}
+      camera={{ position: [0, 0, 5.6], fov: 34 }}
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true, premultipliedAlpha: false }}
     >
