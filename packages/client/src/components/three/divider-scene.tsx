@@ -114,7 +114,7 @@ export function DividerScene() {
   return (
     <Canvas
       className="!absolute inset-0"
-      camera={{ position: [0, 0, 4], fov: 40 }}
+      camera={{ position: [0, 0, 6], fov: 40 }}
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
     >
