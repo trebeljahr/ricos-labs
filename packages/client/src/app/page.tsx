@@ -1,5 +1,4 @@
 import { Capabilities } from "@/components/landing/capabilities";
-import { Company } from "@/components/landing/company";
 import { Contact } from "@/components/landing/contact";
 import { Footer } from "@/components/landing/footer";
 import { Hero } from "@/components/landing/hero";
@@ -18,7 +17,6 @@ export default function LandingPage() {
         <ProjectsGrid />
         <Capabilities />
         <TrustedBy />
-        <Company />
         <Contact />
       </main>
       <Footer />

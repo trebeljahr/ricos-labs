@@ -38,7 +38,7 @@ export function Contact() {
       <div className="container-narrow">
         <div className="mb-12 text-center">
           <div className="font-mono text-xs uppercase tracking-widest text-primary">
-            05 · Contact
+            04 · Contact
           </div>
           <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
             Let&apos;s build something.
