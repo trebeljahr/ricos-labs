@@ -4,9 +4,8 @@
     {
       "name": "client",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@starter/client", "run", "dev"],
-      "port": 3100,
-      "autoPort": true
+      "runtimeArgs": ["--filter", "@starter/client", "exec", "next", "dev", "--port", "57342"],
+      "port": 57342
     },
     {
       "name": "docs",
