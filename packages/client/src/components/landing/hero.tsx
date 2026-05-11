@@ -17,24 +17,19 @@ export function Hero() {
             <div className="eyebrow">An independent studio · est. 2026</div>
 
             <h1 className="mt-5 text-balance text-[2.4rem] leading-[1.05] sm:text-[3.4rem] sm:leading-[1.02]">
-              <span className="font-display">We make </span>
+              <span className="font-display">We build </span>
               <span className="font-display italic">games</span>
-              <span className="font-display">, real-time apps</span>
-              <span className="font-display">,</span>
-              <span className="font-display"> and other </span>
-              <span className="font-display italic">small machines</span>
-              <span className="font-display"> for the browser.</span>
+              <span className="font-display">, real-time apps, and developer tools for the browser.</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/75">
-              {siteConfig.legalName} is a one-person studio run by Rico
-              Trebeljahr. We design, build, and ship the whole thing — from
-              the shader on the screen to the database under it. The work
-              behind{" "}
+              {siteConfig.legalName} is the studio behind{" "}
               <a href="https://playtiao.com" className="link-underline">playtiao</a>,{" "}
               <a href="https://raptor.trebeljahr.com" className="link-underline">raptor</a>,{" "}
               <a href="https://ricos.site" className="link-underline">ricos.site</a>,
-              and a long shelf of open-source experiments lives here.
+              and a long list of open-source experiments. We work across the
+              full stack: shaders, multiplayer servers, payments, databases,
+              and the CLIs and pipelines that ship them.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
