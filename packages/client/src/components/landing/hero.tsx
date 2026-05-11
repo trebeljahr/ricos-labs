@@ -1,81 +1,82 @@
-import { ArrowRight, Github } from "lucide-react";
+"use client";
+
+import dynamic from "next/dynamic";
 import { siteConfig } from "@/lib/site-config";
+
+const HeroScene = dynamic(
+  () => import("@/components/three/hero-scene").then((m) => m.HeroScene),
+  { ssr: false }
+);
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-border/40">
-      <div className="absolute inset-0 grid-background opacity-60" aria-hidden />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-background" aria-hidden />
-      <div className="container-narrow relative py-24 sm:py-32">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-            </span>
-            <span className="font-mono">Open for new projects · 2026</span>
+    <section className="relative overflow-hidden paper-grain">
+      <div className="container-narrow relative pt-16 pb-20 sm:pt-24 sm:pb-28">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr,1fr]">
+          <div className="relative z-10 max-w-2xl">
+            <div className="eyebrow">An independent studio · est. 2026</div>
+
+            <h1 className="mt-5 text-balance text-[2.4rem] leading-[1.05] sm:text-[3.4rem] sm:leading-[1.02]">
+              <span className="font-display">We make </span>
+              <span className="font-display italic">games</span>
+              <span className="font-display">, real-time apps</span>
+              <span className="font-display">,</span>
+              <span className="font-display"> and other </span>
+              <span className="font-display italic">small machines</span>
+              <span className="font-display"> for the browser.</span>
+            </h1>
+
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/75">
+              {siteConfig.legalName} is a one-person studio run by Rico
+              Trebeljahr. We design, build, and ship the whole thing — from
+              the shader on the screen to the database under it. The work
+              behind{" "}
+              <a href="https://playtiao.com" className="link-underline">playtiao</a>,{" "}
+              <a href="https://raptor.trebeljahr.com" className="link-underline">raptor</a>,{" "}
+              <a href="https://ricos.site" className="link-underline">ricos.site</a>,
+              and a long shelf of open-source experiments lives here.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+              <a
+                href="#projects"
+                className="inline-flex h-10 items-center rounded-md bg-foreground px-4 font-medium text-background transition hover:bg-foreground/90"
+              >
+                See the work
+              </a>
+              <a
+                href="#contact"
+                className="text-foreground/70 underline decoration-foreground/20 underline-offset-[5px] transition hover:text-foreground hover:decoration-foreground/60"
+              >
+                Start a conversation →
+              </a>
+            </div>
+
+            <dl className="mt-12 grid max-w-md grid-cols-3 gap-x-6 text-sm">
+              {[
+                { k: "Based", v: "Berlin / Wyoming" },
+                { k: "Stack", v: "TypeScript, end to end" },
+                { k: "Open source", v: "Most of it" },
+              ].map((item) => (
+                <div key={item.k}>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground/45">
+                    {item.k}
+                  </dt>
+                  <dd className="mt-1 text-foreground/85">{item.v}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
-          <h1 className="mt-7 text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
-            <span className="text-gradient">
-              Software studio building games, real-time apps, and developer tools.
-            </span>
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
-            {siteConfig.legalName} is the studio behind{" "}
-            <a href="https://playtiao.com" className="text-foreground underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
-              playtiao.com
-            </a>
-            ,{" "}
-            <a href="https://raptor.trebeljahr.com" className="text-foreground underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
-              raptor.trebeljahr.com
-            </a>
-            ,{" "}
-            <a href="https://ricos.site" className="text-foreground underline decoration-primary/40 underline-offset-4 hover:decoration-primary">
-              ricos.site
-            </a>
-            , and a portfolio of open-source experiments. Multiplayer, 3D, cross-platform — one TypeScript codebase, end to end.
-          </p>
-
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="#projects"
-              className="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
-            >
-              See what we&apos;ve built
-              <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href={siteConfig.socials.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-11 items-center gap-2 rounded-md border border-border bg-card/40 px-5 text-sm font-medium text-foreground transition hover:bg-card"
-            >
-              <Github className="h-4 w-4" />
-              Open source on GitHub
-            </a>
-          </div>
-
-          <div className="mt-14 grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4">
-            {[
-              { label: "Projects shipped", value: "20+" },
-              { label: "GitHub stars", value: "300+" },
-              { label: "Past clients", value: "ESA · Klarna" },
-              { label: "Platforms", value: "Web · Desktop · Mobile" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-left sm:text-center">
-                <div className="font-mono text-lg font-semibold text-foreground">
-                  {stat.value}
-                </div>
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+          <div className="relative aspect-square w-full lg:aspect-auto lg:h-[520px]">
+            <HeroScene />
+            <div className="pointer-events-none absolute bottom-3 right-3 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/40">
+              drag to orbit
+            </div>
           </div>
         </div>
       </div>
+      <div className="rule mx-auto max-w-6xl" />
     </section>
   );
 }

@@ -1,9 +1,5 @@
 const trustedBy = [
-  {
-    name: "European Space Agency",
-    short: "ESA",
-    detail: "Spacecraft trajectory tools",
-  },
+  { name: "European Space Agency", short: "ESA", detail: "Spacecraft trajectory tooling" },
   { name: "Klarna", short: "Klarna", detail: "Payments infrastructure" },
   { name: "Henkel", short: "Henkel", detail: "Internal tooling" },
   { name: "flowkey", short: "flowkey", detail: "Music education product" },
@@ -13,35 +9,26 @@ const trustedBy = [
 
 export function TrustedBy() {
   return (
-    <section className="border-b border-border/40 py-20">
+    <section className="py-20">
       <div className="container-narrow">
-        <div className="mb-10 text-center">
-          <div className="font-mono text-xs uppercase tracking-widest text-primary">
-            Track record
-          </div>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Built for and trusted by
+        <div className="mb-10 max-w-2xl">
+          <div className="eyebrow">Track record</div>
+          <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl">
+            Production work for, and teaching at —
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
-            Production work and teaching experience across space, payments,
-            consumer goods, music, and games.
-          </p>
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+        <ul className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-foreground/10 pt-8 sm:grid-cols-3 lg:grid-cols-6">
           {trustedBy.map((c) => (
-            <div
-              key={c.name}
-              className="flex flex-col items-center justify-center rounded-xl border border-border bg-card/40 px-4 py-6 text-center transition hover:border-primary/30 hover:bg-card"
-            >
-              <div className="font-mono text-base font-semibold tracking-tight text-foreground">
+            <li key={c.name} className="flex flex-col">
+              <span className="font-display text-xl leading-tight">
                 {c.short}
-              </div>
-              <div className="mt-1 text-[11px] leading-snug text-muted-foreground">
+              </span>
+              <span className="mt-1 text-xs leading-snug text-foreground/55">
                 {c.detail}
-              </div>
-            </div>
+              </span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

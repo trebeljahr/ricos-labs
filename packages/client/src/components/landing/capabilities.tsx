@@ -1,84 +1,58 @@
-import {
-  Boxes,
-  Cpu,
-  Gamepad2,
-  Globe,
-  Network,
-  Wrench,
-} from "lucide-react";
-
 const capabilities = [
   {
-    icon: Network,
     title: "Real-time multiplayer",
-    body: "Authoritative servers, WebSocket protocols, matchmaking, tournaments, lag compensation, distributed locks with Redis. Production-grade game and app infrastructure.",
+    body: "Authoritative servers, WebSocket protocols, matchmaking, tournaments, lag compensation, Redis-backed locks. Game and app infrastructure that holds up in production.",
   },
   {
-    icon: Cpu,
     title: "3D graphics & shaders",
-    body: "React Three Fiber, Three.js, custom GLSL. Procedural generation, post-processing, voxel meshing, fractal exhibitions, interactive scientific visualizations.",
+    body: "React Three Fiber, Three.js, hand-written GLSL. Procedural generation, post-processing, voxel meshing, fractal exhibitions, scientific visualisation.",
   },
   {
-    icon: Gamepad2,
     title: "Game development",
-    body: "Canvas 2D engines built from scratch — physics, particles, parallax, day/night cycles, save-state systems, cosmetics, in-game shops, achievements.",
+    body: "Canvas 2D engines from scratch — physics, particles, parallax, day/night cycles, save states, cosmetics, in-game shops, achievements. The whole stack.",
   },
   {
-    icon: Globe,
     title: "Cross-platform delivery",
-    body: "One codebase to web, Electron desktop (signed macOS / Windows / Linux builds), and Capacitor mobile (iOS / Android). itch.io and Steam-ready.",
+    body: "One codebase to web, signed Electron desktop (macOS / Windows / Linux), and Capacitor mobile (iOS / Android). itch.io and Steam-ready.",
   },
   {
-    icon: Boxes,
     title: "Full-stack TypeScript",
-    body: "Next.js, Express, tRPC, MongoDB, Redis, S3-compatible storage, better-auth, Stripe, dotenvx-encrypted secrets, Sentry, OpenPanel analytics.",
+    body: "Next.js, Express, tRPC, MongoDB, Redis, S3-compatible storage, better-auth, Stripe, encrypted secrets, Sentry, OpenPanel — wired together cleanly.",
   },
   {
-    icon: Wrench,
     title: "Tooling & content",
-    body: "Published npm CLIs, content platforms with MDX, static-site publishing, design systems, and CI/CD pipelines for repeatable, multi-target shipping.",
+    body: "Published npm CLIs, MDX content platforms, static-site publishing, design systems, and CI/CD pipelines for repeatable multi-target shipping.",
   },
 ];
 
 export function Capabilities() {
   return (
-    <section
-      id="capabilities"
-      className="relative border-b border-border/40 py-24"
-    >
+    <section id="capabilities" className="relative py-24 sm:py-28">
       <div className="container-narrow">
-        <div className="mb-12">
-          <div className="font-mono text-xs uppercase tracking-widest text-primary">
-            03 · Capabilities
-          </div>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-            What we can build for you
+        <div className="mb-14 max-w-2xl">
+          <div className="eyebrow">What the studio does</div>
+          <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
+            We&apos;re comfortable across the whole stack — and most of it has
+            already shipped to <span className="italic">production</span>.
           </h2>
-          <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
-            Everything from a single-page experiment to a multi-platform
-            product. We&apos;ve done it ourselves — shipped, deployed, and
-            maintained in production.
-          </p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((c) => (
-            <div
+        <ol className="divide-y divide-foreground/10 border-y border-foreground/10">
+          {capabilities.map((c, i) => (
+            <li
               key={c.title}
-              className="group rounded-xl border border-border bg-card p-6 transition hover:border-primary/40"
+              className="group grid items-baseline gap-4 py-7 sm:grid-cols-[3rem,1fr,2fr]"
             >
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/30 transition group-hover:bg-primary/20">
-                <c.icon className="h-5 w-5 text-primary" />
+              <div className="font-mono text-xs text-foreground/40">
+                {String(i + 1).padStart(2, "0")}
               </div>
-              <h3 className="text-lg font-semibold tracking-tight">
-                {c.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <h3 className="font-display text-2xl leading-snug">{c.title}</h3>
+              <p className="text-[15px] leading-relaxed text-foreground/70">
                 {c.body}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

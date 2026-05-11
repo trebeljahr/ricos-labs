@@ -1,30 +1,25 @@
-import { ExternalLink, Github, Mail, Newspaper } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 
 const channels = [
   {
-    icon: Mail,
     label: "Email",
     value: siteConfig.contact.email,
     href: `mailto:${siteConfig.contact.email}`,
-    detail: "Best for project inquiries, partnerships, press.",
+    detail: "Project inquiries, partnerships, press.",
   },
   {
-    icon: Github,
     label: "GitHub",
     value: "github.com/trebeljahr",
     href: siteConfig.socials.github,
-    detail: "All projects are open source.",
+    detail: "Almost everything is open source.",
   },
   {
-    icon: ExternalLink,
     label: "Portfolio",
     value: "portfolio.trebeljahr.com",
     href: siteConfig.socials.portfolio,
-    detail: "Personal CV, project gallery, contact form.",
+    detail: "CV, project gallery, contact form.",
   },
   {
-    icon: Newspaper,
     label: "Writing",
     value: "ricos.site",
     href: siteConfig.socials.blog,
@@ -34,46 +29,45 @@ const channels = [
 
 export function Contact() {
   return (
-    <section id="contact" className="border-b border-border/40 py-24">
+    <section id="contact" className="py-24 sm:py-28">
       <div className="container-narrow">
-        <div className="mb-12 text-center">
-          <div className="font-mono text-xs uppercase tracking-widest text-primary">
-            04 · Contact
+        <div className="grid gap-12 lg:grid-cols-[1.1fr,1fr]">
+          <div className="max-w-xl">
+            <div className="eyebrow">Contact</div>
+            <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
+              Let&apos;s build something <span className="italic">small</span>{" "}
+              and well-made.
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-foreground/75">
+              Open for new projects, partnerships, and collaborations.
+              Project-based work with milestone payments preferred. Bring a
+              rough sketch — we&apos;ll figure out what it wants to be.
+            </p>
           </div>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Let&apos;s build something.
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
-            Open for new projects, partnerships, and collaborations.
-            Project-based work with milestone payments preferred.
-          </p>
-        </div>
-
-        <div className="mx-auto grid max-w-3xl gap-3 sm:grid-cols-2">
-          {channels.map((c) => (
-            <a
-              key={c.label}
-              href={c.href}
-              target={c.href.startsWith("http") ? "_blank" : undefined}
-              rel="noreferrer"
-              className="group flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition hover:border-primary/40"
-            >
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-primary/10 ring-1 ring-primary/30 transition group-hover:bg-primary/20">
-                <c.icon className="h-4 w-4 text-primary" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-                  {c.label}
-                </div>
-                <div className="mt-0.5 truncate font-medium text-foreground">
-                  {c.value}
-                </div>
-                <div className="mt-1 text-xs text-muted-foreground">
-                  {c.detail}
-                </div>
-              </div>
-            </a>
-          ))}
+          <ul className="divide-y divide-foreground/10 border-y border-foreground/10">
+            {channels.map((c) => (
+              <li key={c.label}>
+                <a
+                  href={c.href}
+                  target={c.href.startsWith("http") ? "_blank" : undefined}
+                  rel="noreferrer"
+                  className="group grid grid-cols-[1fr,2fr] items-baseline gap-4 py-5"
+                >
+                  <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-foreground/50">
+                    {c.label}
+                  </span>
+                  <span>
+                    <span className="block font-display text-lg leading-snug underline decoration-foreground/20 decoration-1 underline-offset-[5px] transition group-hover:decoration-primary">
+                      {c.value}
+                    </span>
+                    <span className="mt-0.5 block text-sm text-foreground/60">
+                      {c.detail}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

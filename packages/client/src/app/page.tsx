@@ -1,5 +1,6 @@
 import { Capabilities } from "@/components/landing/capabilities";
 import { Contact } from "@/components/landing/contact";
+import { Divider } from "@/components/landing/divider";
 import { Footer } from "@/components/landing/footer";
 import { Hero } from "@/components/landing/hero";
 import { Nav } from "@/components/landing/nav";
@@ -15,6 +16,7 @@ export default function LandingPage() {
         <Hero />
         <ProjectsFeatured />
         <ProjectsGrid />
+        <Divider />
         <Capabilities />
         <TrustedBy />
         <Contact />
