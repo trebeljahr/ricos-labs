@@ -1,0 +1,56 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ricos Labs">
+  <defs>
+    <radialGradient id="rl-orb" cx="50%" cy="42%" r="62%">
+      <stop offset="0%" stop-color="#2c2050"/>
+      <stop offset="55%" stop-color="#120e22"/>
+      <stop offset="100%" stop-color="#06050f"/>
+    </radialGradient>
+    <linearGradient id="rl-bolt" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#c4b5fd"/>
+      <stop offset="45%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#67e8f9"/>
+    </linearGradient>
+    <radialGradient id="rl-halo" cx="50%" cy="42%" r="50%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#a855f7" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="rl-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.6"/>
+    </filter>
+  </defs>
+
+  <!-- vessel -->
+  <rect width="64" height="64" rx="14" fill="url(#rl-orb)"/>
+
+  <!-- inner halo, like the plasma's diffuse gas -->
+  <circle cx="32" cy="28" r="22" fill="url(#rl-halo)"/>
+
+  <!-- specular highlight on the glass -->
+  <ellipse cx="22" cy="16" rx="9" ry="5" fill="#ffffff" opacity="0.12"/>
+
+  <!-- plasma filament: soft glow layer -->
+  <path
+    d="M20 13 L33 27 L25 33 L44 52"
+    stroke="url(#rl-bolt)"
+    stroke-width="6.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+    opacity="0.55"
+    filter="url(#rl-glow)"
+  />
+  <!-- plasma filament: sharp core -->
+  <path
+    d="M20 13 L33 27 L25 33 L44 52"
+    stroke="url(#rl-bolt)"
+    stroke-width="2.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+
+  <!-- contact point on the glass -->
+  <circle cx="44" cy="52" r="4.5" fill="#67e8f9" opacity="0.4" filter="url(#rl-glow)"/>
+  <circle cx="44" cy="52" r="2" fill="#ecfeff"/>
+</svg>
