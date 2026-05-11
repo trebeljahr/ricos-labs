@@ -1,10 +1,17 @@
-const trustedBy = [
-  { name: "European Space Agency", short: "ESA", detail: "Spacecraft trajectory tooling" },
-  { name: "Klarna", short: "Klarna", detail: "Payments infrastructure" },
-  { name: "Henkel", short: "Henkel", detail: "Internal tooling" },
-  { name: "flowkey", short: "flowkey", detail: "Music education product" },
-  { name: "Softgames", short: "Softgames", detail: "HTML5 game engineering" },
-  { name: "Ironhack", short: "Ironhack", detail: "Engineering instruction" },
+import { EsaLogo } from "@/components/logos/EsaLogo";
+import { FlowkeyLogo } from "@/components/logos/FlowkeyLogo";
+import { HenkelLogo } from "@/components/logos/HenkelLogo";
+import { IronhackLogo } from "@/components/logos/IronhackLogo";
+import { KlarnaLogo } from "@/components/logos/KlarnaLogo";
+import { SoftgamesLogo } from "@/components/logos/SoftgamesLogo";
+
+const brands = [
+  { name: "European Space Agency", Logo: EsaLogo, detail: "Spacecraft trajectory tooling" },
+  { name: "Klarna", Logo: KlarnaLogo, detail: "Payments infrastructure" },
+  { name: "Henkel", Logo: HenkelLogo, detail: "Internal tooling" },
+  { name: "flowkey", Logo: FlowkeyLogo, detail: "Music education product" },
+  { name: "Softgames", Logo: SoftgamesLogo, detail: "HTML5 game engineering" },
+  { name: "Ironhack", Logo: IronhackLogo, detail: "Engineering instruction" },
 ];
 
 export function TrustedBy() {
@@ -18,14 +25,18 @@ export function TrustedBy() {
             <span className="italic">teaching</span> it.
           </h2>
         </div>
-        <ul className="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-foreground/10 pt-8 sm:grid-cols-3 lg:grid-cols-6">
-          {trustedBy.map((c) => (
-            <li key={c.name} className="flex flex-col">
-              <span className="font-display text-xl leading-tight">
-                {c.short}
-              </span>
-              <span className="mt-1 text-xs leading-snug text-foreground/55">
-                {c.detail}
+        <ul className="grid grid-cols-2 items-center gap-x-8 gap-y-10 border-t border-foreground/10 pt-10 sm:grid-cols-3 lg:grid-cols-6">
+          {brands.map(({ name, Logo, detail }) => (
+            <li key={name} className="flex flex-col items-start">
+              <div className="flex h-10 w-full items-center justify-start">
+                <Logo
+                  role="img"
+                  aria-label={name}
+                  className="h-full w-auto max-w-[140px] text-foreground/85"
+                />
+              </div>
+              <span className="mt-3 text-xs leading-snug text-foreground/55">
+                {detail}
               </span>
             </li>
           ))}

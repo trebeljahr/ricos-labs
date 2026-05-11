@@ -1,29 +1,26 @@
 import { siteConfig } from "@/lib/site-config";
 
-const channels = [
+const facts = [
   {
     label: "Email",
     value: siteConfig.contact.email,
     href: `mailto:${siteConfig.contact.email}`,
-    detail: "Project inquiries, partnerships, press.",
+    detail: "Rough sketches, pitches, RFPs — all welcome.",
   },
   {
-    label: "GitHub",
-    value: "github.com/trebeljahr",
-    href: siteConfig.socials.github,
-    detail: "Almost everything is open source.",
+    label: "Engagements",
+    value: "1 week → 4 months",
+    detail: "From a clickable prototype to a fully shipped multi-platform product.",
   },
   {
-    label: "Portfolio",
-    value: "portfolio.trebeljahr.com",
-    href: siteConfig.socials.portfolio,
-    detail: "CV, project gallery, contact form.",
+    label: "How we bill",
+    value: "Fixed-scope milestones",
+    detail: "Weekly invoices, no retainers, no surprises.",
   },
   {
-    label: "Writing",
-    value: "ricos.site",
-    href: siteConfig.socials.blog,
-    detail: "Notes, essays, demos, photography.",
+    label: "Where",
+    value: "Berlin · Wyoming",
+    detail: "EU + US working hours · fully async-friendly.",
   },
 ];
 
@@ -38,34 +35,49 @@ export function Contact() {
               Let&apos;s build something <span className="italic">well-made</span>.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-foreground/75">
-              Open for new projects, partnerships, and collaborations.
-              Project-based work with milestone payments preferred. Bring a
-              rough sketch — we&apos;ll figure out what it wants to be.
+              Open for new projects, partnerships, and collaborations. Bring a
+              rough sketch — we&apos;ll figure out what it wants to be, scope
+              the smallest version that proves it works, and ship from there.
             </p>
+            <a
+              href={`mailto:${siteConfig.contact.email}`}
+              className="mt-8 inline-flex h-11 items-center rounded-md bg-foreground px-5 text-sm font-medium text-background transition hover:bg-foreground/90"
+            >
+              {siteConfig.contact.email}
+            </a>
           </div>
           <ul className="divide-y divide-foreground/10 border-y border-foreground/10">
-            {channels.map((c) => (
-              <li key={c.label}>
-                <a
-                  href={c.href}
-                  target={c.href.startsWith("http") ? "_blank" : undefined}
-                  rel="noreferrer"
-                  className="group grid grid-cols-[1fr,2fr] items-baseline gap-4 py-5"
-                >
+            {facts.map((f) => {
+              const inner = (
+                <div className="grid grid-cols-[1fr,2fr] items-baseline gap-4 py-5">
                   <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-foreground/50">
-                    {c.label}
+                    {f.label}
                   </span>
                   <span>
-                    <span className="block font-display text-lg leading-snug underline decoration-foreground/20 decoration-1 underline-offset-[5px] transition group-hover:decoration-primary">
-                      {c.value}
+                    <span className="block font-display text-lg leading-snug">
+                      {f.value}
                     </span>
                     <span className="mt-0.5 block text-sm text-foreground/60">
-                      {c.detail}
+                      {f.detail}
                     </span>
                   </span>
-                </a>
-              </li>
-            ))}
+                </div>
+              );
+              return (
+                <li key={f.label}>
+                  {f.href ? (
+                    <a
+                      href={f.href}
+                      className="block underline decoration-foreground/20 decoration-1 underline-offset-[5px] transition hover:decoration-foreground/60"
+                    >
+                      {inner}
+                    </a>
+                  ) : (
+                    inner
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
