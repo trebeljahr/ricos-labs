@@ -50,9 +50,9 @@ export const otherProjects: Project[] = [
     tech: ["WebGL", "GLSL", "React"],
   },
   {
-    title: "Interactive 3D Demos",
+    title: "R3F Scene Gallery",
     url: "https://ricos.site/r3f/scenes/plasma-ball",
-    tagline: "39 demos in React Three Fiber and custom GLSL",
+    tagline: "39 interactive scenes in React Three Fiber and custom GLSL",
     description:
       "A library of interactive scenes: plasma balls, particle fields, post-processing pipelines, shader experiments. Written and tuned by hand.",
     image: "/images/r3f-demos.png",
@@ -77,25 +77,25 @@ export const otherProjects: Project[] = [
     tech: ["Canvas", "WebSockets", "Node.js"],
   },
   {
-    title: "Quaternius 3D Viewer",
+    title: "3D Asset Browser",
     url: "https://quaternius.trebeljahr.com",
-    tagline: "Interactive 3D model browser",
+    tagline: "Interactive gallery for thousands of CC0 3D models",
     description:
       "A polished gallery for thousands of CC0 3D assets. Preview them in-browser before downloading.",
     image: "/images/dinosaur.png",
     tech: ["React Three Fiber", "glTF"],
   },
   {
-    title: "Chess App",
+    title: "Chess",
     url: "https://github.com/trebeljahr/chess-app",
-    tagline: "Modern stack revamp of my first-ever project",
+    tagline: "Modern-stack revamp of my first-ever project",
     description:
       "Rebuilt from scratch on a modern stack. Typed move generation, AI opponent, board editor, PGN import/export.",
     image: "/images/chess.png",
     tech: ["TypeScript", "React"],
   },
   {
-    title: "conv3D",
+    title: "conv3d",
     url: "https://github.com/trebeljahr/conv3d",
     tagline: "Published npm CLI for batch 3D model conversion",
     description:
