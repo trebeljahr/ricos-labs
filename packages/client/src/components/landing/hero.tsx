@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { siteConfig } from "@/lib/site-config";
+import { useInView } from "@/lib/use-in-view";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 const HeroScene = dynamic(
   () => import("@/components/three/hero-scene").then((m) => m.HeroScene),
@@ -9,6 +11,10 @@ const HeroScene = dynamic(
 );
 
 export function Hero() {
+  const reduced = useReducedMotion();
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const shouldRender3D = !reduced && inView;
+
   return (
     <section className="relative overflow-hidden paper-grain">
       <div className="container-narrow relative pt-16 pb-20 sm:pt-24 sm:pb-28">
@@ -63,7 +69,10 @@ export function Hero() {
             </dl>
           </div>
 
-          <div className="relative mx-auto aspect-square w-full max-w-[640px]">
+          <div
+            ref={ref}
+            className="relative mx-auto aspect-square w-full max-w-[640px]"
+          >
             {/* Soft outer halo on the page so the dark panel sits naturally on cream. */}
             <div
               aria-hidden
@@ -73,9 +82,19 @@ export function Hero() {
                   "radial-gradient(closest-side, rgba(242,0,255,0.22), rgba(90,139,255,0.08) 55%, transparent 75%)",
               }}
             />
-            {/* Dark display panel: the real plasma lamp lives inside. */}
-            <div className="absolute inset-0 overflow-hidden rounded-3xl ring-1 ring-foreground/20 shadow-[0_30px_80px_-30px_rgba(20,15,35,0.55)] bg-[#121524]">
-              <HeroScene />
+            {/* Dark display panel. Plasma scene mounts only after the panel
+                scrolls into view and only if motion is allowed. */}
+            <div
+              className="absolute inset-0 overflow-hidden rounded-3xl ring-1 ring-foreground/20 shadow-[0_30px_80px_-30px_rgba(20,15,35,0.55)] bg-[#121524]"
+              style={{
+                /* Static poster gradient that paints the panel before the
+                   3D Canvas mounts. Stops the LCP from flashing solid black,
+                   and stays visible if the scene never mounts. */
+                backgroundImage:
+                  "radial-gradient(60% 60% at 50% 45%, rgba(160,75,255,0.35) 0%, rgba(28,18,55,0.6) 55%, rgba(12,10,26,1) 100%)",
+              }}
+            >
+              {shouldRender3D ? <HeroScene /> : null}
             </div>
             <div className="pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/40">
               touch the glass
