@@ -1,12 +1,14 @@
 # Production Docker Compose. Coolify auto-detects ${VAR_NAME} syntax
 # and creates UI fields for each. Do NOT expose ports here. Coolify's
 # Traefik handles external routing.
+#
+# The image is built and pushed by .github/workflows/deploy.yml on
+# every push to main and pulled here by tag. Override CLIENT_IMAGE in
+# Coolify's UI if you need to pin a specific commit.
 
 services:
   client:
-    build:
-      context: .
-      dockerfile: packages/client/Dockerfile
+    image: ${CLIENT_IMAGE:-ghcr.io/trebeljahr/ricos-labs:latest}
     environment:
       NEXT_PUBLIC_OPENPANEL_CLIENT_ID: ${OPENPANEL_CLIENT_ID:-}
       NEXT_PUBLIC_SENTRY_DSN: ${CLIENT_SENTRY_DSN:-}
