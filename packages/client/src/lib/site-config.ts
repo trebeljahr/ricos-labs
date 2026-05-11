@@ -8,7 +8,7 @@ export const siteConfig = {
   url: "https://ricoslabs.com",
 
   contact: {
-    email: "rico@trebeljahr.com",
+    email: "hello@ricoslabs.com",
     imprintEmail: "imprint+ricoslabs@trebeljahr.com",
   },
 
