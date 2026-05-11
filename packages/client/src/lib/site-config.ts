@@ -8,23 +8,25 @@ export const siteConfig = {
   url: "https://ricoslabs.com",
 
   contact: {
-    email: "hello@ricoslabs.com",
-    imprintEmail: "imprint@ricoslabs.com",
+    email: "hello+ricoslabs@trebeljahr.com",
+    imprintEmail: "imprint+ricoslabs@trebeljahr.com",
   },
 
   entity: {
-    type: "Limited Liability Company (Wyoming, USA)",
-    classification: "Single-member, member-managed",
+    name: "Ricos Labs LLC",
+    type: "Limited Liability Company",
+    jurisdiction: "Wyoming, USA",
     formedOn: "April 17, 2026",
-    jurisdiction: "Wyoming, United States",
-    principalOffice: {
-      line1: "30 N Gould St, Ste N",
-      line2: "Sheridan, WY 82801",
-      country: "United States",
-    },
-    registeredAgent: "Northwest Registered Agent Service Inc.",
-    owner: "Rico Trebeljahr (sole member)",
-    fiscalYear: "January 1 – December 31",
+  },
+
+  operator: {
+    name: "Rico Trebeljahr",
+    addressLines: [
+      "c/o Block Services",
+      "Stuttgarter Str. 106",
+      "70736 Fellbach",
+      "Germany",
+    ],
   },
 
   socials: {

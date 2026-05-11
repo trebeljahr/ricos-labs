@@ -33,10 +33,13 @@ export function Footer() {
         </div>
 
         <div className="mt-10 max-w-2xl text-xs leading-relaxed text-foreground/50">
-          A Wyoming Limited Liability Company. Principal office:{" "}
-          {siteConfig.entity.principalOffice.line1},{" "}
-          {siteConfig.entity.principalOffice.line2},{" "}
-          {siteConfig.entity.principalOffice.country}.
+          Operated under {siteConfig.legalName} ·{" "}
+          {siteConfig.entity.type} ({siteConfig.entity.jurisdiction}). For
+          legal contact see the{" "}
+          <Link href="/imprint" className="underline underline-offset-2 hover:text-foreground">
+            imprint
+          </Link>
+          .
         </div>
       </div>
     </footer>
