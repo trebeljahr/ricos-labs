@@ -49,8 +49,8 @@ RUN pnpm --filter @starter/shared run build
 # (dotenvx silently passes through), so this won't break local
 # `docker build` runs that don't pass a key.
 RUN --mount=type=secret,id=dotenvx_private_key,env=DOTENV_PRIVATE_KEY_PRODUCTION \
-    NODE_ENV=production pnpm dlx @dotenvx/dotenvx run \
-      -f packages/client/.env.production --quiet --ignore-missing-keys -- \
+    NODE_ENV=production pnpm dlx @dotenvx/dotenvx --quiet run \
+      -f packages/client/.env.production --ignore=MISSING_PRIVATE_KEY -- \
       pnpm --filter @starter/client run build
 
 # ── Stage 3: runtime ───────────────────────────────────────────────
