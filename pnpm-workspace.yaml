@@ -4,3 +4,10 @@ onlyBuiltDependencies:
   - "@sentry/cli"
   - esbuild
   - sharp
+strictDepBuilds: false
+verifyDepsBeforeRun: false
+autoInstallPeers: true
+allowBuilds:
+  '@sentry/cli': true
+  esbuild: true
+  sharp: true

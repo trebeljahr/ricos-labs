@@ -24,12 +24,5 @@
     "mongodb": "^6.12.0",
     "typescript": "^5.7.0"
   },
-  "dependencies": {},
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@sentry/cli",
-      "esbuild",
-      "sharp"
-    ]
-  }
+  "dependencies": {}
 }
