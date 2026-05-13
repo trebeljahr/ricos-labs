@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@hatchkit/dev-plugin-next": "^0.1.43",
     "@openpanel/nextjs": "^1.0.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
