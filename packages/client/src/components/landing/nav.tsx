@@ -6,7 +6,6 @@ import { ThemeToggle } from "./theme-toggle";
 const navLinks = [
   { href: "/#projects", label: "Projects" },
   { href: "/#capabilities", label: "Studio" },
-  { href: "/brand", label: "Brand" },
   { href: siteConfig.socials.github, label: "GitHub", external: true },
 ];
 

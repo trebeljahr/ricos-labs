@@ -32,7 +32,6 @@ export function Footer() {
             <a href={siteConfig.socials.github} target="_blank" rel="noreferrer" className="hover:text-foreground">
               GitHub
             </a>
-            <Link href="/brand" className="hover:text-foreground">Brand kit</Link>
             <Link href="/imprint" className="hover:text-foreground">Imprint</Link>
             <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-foreground">
               {siteConfig.contact.email}
