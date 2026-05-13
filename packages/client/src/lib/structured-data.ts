@@ -34,7 +34,7 @@ export function getLandingPageJsonLd(): JsonLd {
         name: siteConfig.name,
         legalName: siteConfig.legalName,
         url: siteConfig.url,
-        logo: absoluteUrl("/icon.svg"),
+        logo: absoluteUrl("/icon.png"),
         image: absoluteUrl(siteConfig.seo.image.path),
         description: siteConfig.seo.description,
         email: siteConfig.contact.email,
