@@ -60,8 +60,8 @@ export const siteConfig = {
       alt: "Ricos Labs LLC: games, real-time apps, and developer tools for the browser.",
     },
     themeColor: {
-      light: "#f6efe2",
-      dark: "#0f1118",
+      light: "#F6EFE2",
+      dark: "#12141E",
     },
     keywords: [
       "Ricos Labs",

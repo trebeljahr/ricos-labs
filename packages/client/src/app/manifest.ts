@@ -11,7 +11,7 @@ export default function manifest(): MetadataRoute.Manifest {
     scope: "/",
     display: "standalone",
     background_color: siteConfig.seo.themeColor.light,
-    theme_color: siteConfig.seo.themeColor.light,
+    theme_color: siteConfig.seo.themeColor.dark,
     lang: siteConfig.language,
     dir: "ltr",
     categories: ["business", "developer", "games", "productivity"],
@@ -21,6 +21,12 @@ export default function manifest(): MetadataRoute.Manifest {
         sizes: "any",
         type: "image/svg+xml",
         purpose: "any",
+      },
+      {
+        src: "/brand/ricos-labs-mark.svg",
+        sizes: "any",
+        type: "image/svg+xml",
+        purpose: "maskable",
       },
     ],
   };

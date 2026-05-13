@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { brand } from "@/lib/brand";
 import { siteConfig } from "@/lib/site-config";
 
 export const runtime = "nodejs";
@@ -18,23 +19,42 @@ export default function OpengraphImage() {
           justifyContent: "space-between",
           padding: "80px",
           background:
-            "radial-gradient(60% 60% at 80% 20%, #2a1a3d 0%, #14121f 55%, #0a0913 100%)",
-          color: "#f6efe2",
+            "radial-gradient(60% 60% at 82% 14%, #26304A 0%, #12141E 48%, #080912 100%)",
+          color: brand.palette[1].hex,
           fontFamily: "ui-sans-serif, system-ui",
         }}
       >
         <div
           style={{
             display: "flex",
-            alignItems: "baseline",
-            gap: "14px",
+            alignItems: "center",
+            gap: "24px",
             fontSize: "28px",
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "rgba(246,239,226,0.55)",
+            color: "rgba(246,239,226,0.58)",
           }}
         >
-          <span style={{ fontFamily: "serif", fontSize: "44px", letterSpacing: 0, textTransform: "none", color: "#f6efe2" }}>
+          <div
+            style={{
+              width: "74px",
+              height: "74px",
+              borderRadius: "16px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background:
+                "radial-gradient(70% 70% at 65% 20%, #26304A 0%, #12141E 55%, #080912 100%)",
+              border: "2px solid rgba(246,239,226,0.14)",
+              color: brand.palette[1].hex,
+              fontFamily: "serif",
+              fontSize: "54px",
+              lineHeight: 1,
+            }}
+          >
+            R
+          </div>
+          <span style={{ fontFamily: "serif", fontSize: "46px", letterSpacing: 0, textTransform: "none", color: brand.palette[1].hex }}>
             Ricos Labs
           </span>
           <span>LLC</span>
@@ -46,17 +66,17 @@ export default function OpengraphImage() {
               fontSize: "30px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#d97757",
+              color: brand.palette[2].hex,
             }}
           >
-            An independent software studio
+            {brand.promise}
           </div>
           <div
             style={{
               fontSize: "82px",
               lineHeight: 1.05,
               fontFamily: "serif",
-              letterSpacing: "-0.01em",
+              letterSpacing: 0,
             }}
           >
             Games, real-time apps, and developer tools for the browser.

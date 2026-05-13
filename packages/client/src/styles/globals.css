@@ -4,12 +4,12 @@
 
 @layer base {
   :root {
-    /* Warm paper background, deep ink for text, muted rust as accent. */
+    /* Warm paper background, deep ink for text, signal copper as accent. */
     --background: 36 30% 96%;
     --foreground: 220 35% 12%;
     --card: 36 28% 93%;
     --card-foreground: 220 35% 12%;
-    --primary: 14 62% 48%;
+    --primary: 13 68% 55%;
     --primary-foreground: 36 30% 97%;
     --secondary: 36 22% 88%;
     --secondary-foreground: 220 35% 12%;
@@ -31,15 +31,20 @@
     --paper-1: 36 30% 96%;
     --paper-2: 36 28% 93%;
     --paper-3: 36 22% 88%;
+    --brand-ink: 222 26% 9%;
+    --brand-paper: 36 30% 96%;
+    --brand-copper: 13 68% 55%;
+    --brand-cyan: 187 67% 53%;
+    --brand-violet: 254 78% 60%;
   }
 
   .dark {
-    /* Dark ink background, warm paper text, slightly brighter rust accent. */
+    /* Dark ink background, warm paper text, brighter signal copper accent. */
     --background: 220 28% 7%;
     --foreground: 36 28% 92%;
     --card: 220 24% 11%;
     --card-foreground: 36 28% 92%;
-    --primary: 14 70% 58%;
+    --primary: 13 74% 61%;
     --primary-foreground: 220 30% 10%;
     --secondary: 220 18% 16%;
     --secondary-foreground: 36 28% 92%;
@@ -59,6 +64,11 @@
     --paper-1: 220 28% 7%;
     --paper-2: 220 24% 11%;
     --paper-3: 220 18% 16%;
+    --brand-ink: 222 26% 9%;
+    --brand-paper: 36 30% 96%;
+    --brand-copper: 13 74% 61%;
+    --brand-cyan: 187 67% 56%;
+    --brand-violet: 254 78% 64%;
   }
 }
 
@@ -84,7 +94,7 @@
   .font-display {
     font-family: var(--font-display), Georgia, "Times New Roman", serif;
     font-feature-settings: "ss01", "ss02";
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
   }
   /* Visible focus ring for keyboard nav; respected by all interactive bits. */
   :focus-visible {

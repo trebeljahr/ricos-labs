@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.seo.description,
   applicationName: siteConfig.name,
-  keywords: [...siteConfig.seo.keywords],
+  keywords: [...siteConfig.seo.keywords, "Ricos Labs brand kit"],
   authors: [
     { name: siteConfig.operator.name, url: siteConfig.socials.portfolio },
   ],

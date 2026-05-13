@@ -1,23 +1,28 @@
 import Link from "next/link";
+import { BrandMark } from "@/components/brand/brand-mark";
 import { siteConfig } from "@/lib/site-config";
 import { ThemeToggle } from "./theme-toggle";
 
 const navLinks = [
-  { href: "#projects", label: "Work" },
-  { href: "#capabilities", label: "Studio" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#projects", label: "Work" },
+  { href: "/#capabilities", label: "Studio" },
+  { href: "/brand", label: "Brand" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Nav() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-foreground/10 bg-background/85 backdrop-blur">
       <div className="container-narrow flex h-14 items-center justify-between">
-        <Link href="/" className="flex items-baseline gap-2">
-          <span className="font-display text-xl leading-none">
-            Ricos Labs
-          </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/50">
-            LLC
+        <Link href="/" className="flex items-center gap-2.5">
+          <BrandMark idPrefix="nav-brand-mark" className="h-8 w-8 shrink-0" />
+          <span className="flex items-baseline gap-2">
+            <span className="font-display text-xl leading-none">
+              Ricos Labs
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/50">
+              LLC
+            </span>
           </span>
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-8 text-sm md:flex">
