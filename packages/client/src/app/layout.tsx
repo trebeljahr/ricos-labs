@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
+import Script from "next/script";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { siteConfig } from "@/lib/site-config";
 import "@/styles/globals.css";
@@ -30,6 +31,10 @@ const ogImage = {
   height: siteConfig.seo.image.height,
   alt: siteConfig.seo.image.alt,
 };
+const plausibleDomain = "ricoslabs.com";
+const plausibleScriptUrl =
+  "https://plausible.trebeljahr.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js";
+const shouldLoadPlausible = process.env.NODE_ENV === "production";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -50,8 +55,12 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml", sizes: "any" }],
-    shortcut: "/icon.svg",
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/icon.png",
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
     type: "website",
@@ -133,6 +142,24 @@ export default function RootLayout({
         )}
       </head>
       <body className="min-h-screen bg-background text-foreground font-sans">
+        {shouldLoadPlausible ? (
+          <Script id="plausible-loader" strategy="afterInteractive">
+            {`
+              (function () {
+                var domain = ${JSON.stringify(plausibleDomain)};
+                if (location.hostname !== domain) return;
+                window.plausible = window.plausible || function() {
+                  (window.plausible.q = window.plausible.q || []).push(arguments);
+                };
+                var script = document.createElement("script");
+                script.defer = true;
+                script.dataset.domain = domain;
+                script.src = ${JSON.stringify(plausibleScriptUrl)};
+                document.head.appendChild(script);
+              })();
+            `}
+          </Script>
+        ) : null}
         <a href="#main" className="skip-to-content">
           Skip to content
         </a>
