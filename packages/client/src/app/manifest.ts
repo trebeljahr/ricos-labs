@@ -3,13 +3,18 @@ import { siteConfig } from "@/lib/site-config";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
+    id: "/",
     name: siteConfig.legalName,
     short_name: siteConfig.name,
-    description: siteConfig.description,
+    description: siteConfig.seo.description,
     start_url: "/",
+    scope: "/",
     display: "standalone",
-    background_color: "#f6efe2",
-    theme_color: "#f6efe2",
+    background_color: siteConfig.seo.themeColor.light,
+    theme_color: siteConfig.seo.themeColor.light,
+    lang: siteConfig.language,
+    dir: "ltr",
+    categories: ["business", "developer", "games", "productivity"],
     icons: [
       {
         src: "/icon.svg",

@@ -24,38 +24,54 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
+const ogImage = {
+  url: siteConfig.seo.image.path,
+  width: siteConfig.seo.image.width,
+  height: siteConfig.seo.image.height,
+  alt: siteConfig.seo.image.alt,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.legalName} · ${siteConfig.tagline}`,
-    template: `%s · ${siteConfig.name}`,
+    default: siteConfig.seo.title,
+    template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: siteConfig.seo.description,
   applicationName: siteConfig.name,
-  keywords: [
-    "software studio",
-    "multiplayer games",
-    "real-time apps",
-    "WebGL",
-    "TypeScript",
-    "Wyoming LLC",
-    "Rico Trebeljahr",
-    "Ricos Labs",
+  keywords: [...siteConfig.seo.keywords],
+  authors: [
+    { name: siteConfig.operator.name, url: siteConfig.socials.portfolio },
   ],
-  authors: [{ name: "Rico Trebeljahr", url: siteConfig.socials.portfolio }],
-  creator: siteConfig.legalName,
+  creator: siteConfig.operator.name,
+  publisher: siteConfig.legalName,
+  category: "technology",
+  classification: "Software development studio",
+  referrer: "origin-when-cross-origin",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml", sizes: "any" }],
+    shortcut: "/icon.svg",
+  },
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
+    locale: siteConfig.locale,
+    url: "/",
     siteName: siteConfig.name,
-    title: `${siteConfig.legalName} · ${siteConfig.tagline}`,
-    description: siteConfig.description,
+    title: siteConfig.seo.ogTitle,
+    description: siteConfig.seo.ogDescription,
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.legalName} · ${siteConfig.tagline}`,
-    description: siteConfig.description,
+    title: siteConfig.seo.ogTitle,
+    description: siteConfig.seo.ogDescription,
+    images: [
+      {
+        url: siteConfig.seo.image.path,
+        alt: siteConfig.seo.image.alt,
+      },
+    ],
   },
   alternates: {
     canonical: "/",
@@ -68,6 +84,7 @@ export const metadata: Metadata = {
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
   formatDetection: {
@@ -80,9 +97,16 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  colorScheme: "light dark",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6efe2" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f1118" },
+    {
+      media: "(prefers-color-scheme: light)",
+      color: siteConfig.seo.themeColor.light,
+    },
+    {
+      media: "(prefers-color-scheme: dark)",
+      color: siteConfig.seo.themeColor.dark,
+    },
   ],
 };
 

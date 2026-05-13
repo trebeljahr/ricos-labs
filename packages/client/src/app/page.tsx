@@ -8,10 +8,17 @@ import { ProjectsFeatured } from "@/components/landing/projects-featured";
 import { ProjectsGrid } from "@/components/landing/projects-grid";
 import { Services } from "@/components/landing/services";
 import { TrustedBy } from "@/components/landing/trusted-by";
+import { getLandingPageJsonLd, stringifyJsonLd } from "@/lib/structured-data";
 
 export default function LandingPage() {
+  const jsonLd = getLandingPageJsonLd();
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: stringifyJsonLd(jsonLd) }}
+      />
       <Nav />
       <main id="main">
         <Hero />

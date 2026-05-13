@@ -5,9 +5,41 @@ import { Footer } from "@/components/landing/footer";
 import { Nav } from "@/components/landing/nav";
 import { siteConfig } from "@/lib/site-config";
 
+const description = `Legal disclosure (§ 5 DDG, § 18 (2) MStV) for ${siteConfig.legalName} and ${siteConfig.domain}.`;
+const openGraphDescription = `Legal disclosure for ${siteConfig.legalName} and ${siteConfig.domain}.`;
+const image = {
+  url: siteConfig.seo.image.path,
+  width: siteConfig.seo.image.width,
+  height: siteConfig.seo.image.height,
+  alt: siteConfig.seo.image.alt,
+};
+
 export const metadata: Metadata = {
   title: "Imprint",
-  description: `Legal disclosure (§ 5 DDG, § 18 (2) MStV) for ${siteConfig.legalName} and ${siteConfig.domain}.`,
+  description,
+  alternates: {
+    canonical: "/imprint",
+  },
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    siteName: siteConfig.name,
+    title: `Imprint | ${siteConfig.name}`,
+    description: openGraphDescription,
+    url: "/imprint",
+    images: [image],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Imprint | ${siteConfig.name}`,
+    description: openGraphDescription,
+    images: [
+      {
+        url: siteConfig.seo.image.path,
+        alt: siteConfig.seo.image.alt,
+      },
+    ],
+  },
 };
 
 function Address() {
