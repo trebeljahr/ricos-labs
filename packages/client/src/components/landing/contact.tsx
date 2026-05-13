@@ -10,7 +10,7 @@ const facts = [
   {
     label: "Engagements",
     value: "1 week → 4 months",
-    detail: "From a clickable prototype to a fully shipped multi-platform product.",
+    detail: "Focused builds, product audits, and production systems.",
   },
   {
     label: "How we bill",
@@ -19,8 +19,8 @@ const facts = [
   },
   {
     label: "Where",
-    value: "Berlin · Wyoming",
-    detail: "EU + US working hours · fully async-friendly.",
+    value: "Berlin / Wyoming",
+    detail: "EU + US working hours, async-friendly by default.",
   },
 ];
 
@@ -32,13 +32,12 @@ export function Contact() {
           <div className="max-w-xl">
             <div className="eyebrow">Contact</div>
             <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-              Got something <span className="italic">ambitious</span>?
-              Let&apos;s ship it.
+              Product builds, partnerships, and technical collaborations.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-foreground/75">
-              Open for new projects, partnerships, and collaborations. Bring
-              a rough sketch and we&apos;ll scope the smallest version that
-              proves it works, then ship from there.
+              Ricos Labs is open to selected outside work when the problem fits
+              the studio: games, real-time systems, WebGL, cross-platform apps,
+              developer tools, and production infrastructure.
             </p>
             <a
               href={`mailto:${siteConfig.contact.email}`}

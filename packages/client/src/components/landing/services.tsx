@@ -36,15 +36,15 @@ export function Services() {
     <section id="services" className="relative py-24 sm:py-28">
       <div className="container-narrow">
         <div className="mb-14 max-w-2xl">
-          <div className="eyebrow">What we ship for clients</div>
+          <div className="eyebrow">Selective client work</div>
           <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-            Six things we&apos;ll happily{" "}
-            <span className="italic">build for you</span>.
+            Available when the brief overlaps with the studio&apos;s own{" "}
+            <span className="italic">product practice</span>.
           </h2>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground/75">
-            We work project-by-project on fixed-scope milestones. Bring a rough
-            sketch, a pitch deck, or a problem — we&apos;ll figure out what
-            kind of engagement it wants to be.
+            Client work stays intentionally close to the systems Ricos Labs
+            already builds and operates: multiplayer, graphics, cross-platform
+            apps, developer tools, and production infrastructure.
           </p>
         </div>
 

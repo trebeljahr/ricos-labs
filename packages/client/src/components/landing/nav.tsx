@@ -4,10 +4,10 @@ import { siteConfig } from "@/lib/site-config";
 import { ThemeToggle } from "./theme-toggle";
 
 const navLinks = [
-  { href: "/#projects", label: "Work" },
+  { href: "/#projects", label: "Projects" },
   { href: "/#capabilities", label: "Studio" },
   { href: "/brand", label: "Brand" },
-  { href: "/#contact", label: "Contact" },
+  { href: siteConfig.socials.github, label: "GitHub", external: true },
 ];
 
 export function Nav() {
@@ -30,6 +30,8 @@ export function Nav() {
             <a
               key={link.href}
               href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noreferrer" : undefined}
               className="text-foreground/65 transition hover:text-foreground"
             >
               {link.label}
@@ -42,7 +44,7 @@ export function Nav() {
             href={`mailto:${siteConfig.contact.email}`}
             className="hidden h-9 items-center rounded-md border border-foreground/20 px-3.5 text-sm font-medium text-foreground transition hover:bg-foreground hover:text-background md:inline-flex"
           >
-            Write us
+            Contact
           </a>
         </div>
       </div>

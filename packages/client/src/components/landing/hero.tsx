@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { projectStats } from "@/lib/projects-data";
 import { siteConfig } from "@/lib/site-config";
 import { useInView } from "@/lib/use-in-view";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
@@ -20,22 +21,20 @@ export function Hero() {
       <div className="container-narrow relative pt-16 pb-20 sm:pt-24 sm:pb-28">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr,1.05fr]">
           <div className="relative z-10 max-w-2xl">
-            <div className="eyebrow">An independent studio · est. 2026</div>
+            <div className="eyebrow">Open-source product studio - est. 2026</div>
 
             <h1 className="mt-5 text-balance text-[2.4rem] leading-[1.05] sm:text-[3.4rem] sm:leading-[1.02]">
-              <span className="font-display">We ship </span>
-              <span className="font-display italic">multiplayer games</span>
-              <span className="font-display">, real-time apps, and the developer tools that hold them up.</span>
+              <span className="font-display">Ricos Labs builds </span>
+              <span className="font-display italic">games</span>
+              <span className="font-display">, tools, and interactive art in public.</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/75">
-              {siteConfig.legalName} built{" "}
-              <a href="https://playtiao.com" className="link-underline">tiao</a>,{" "}
-              <a href="https://raptor.trebeljahr.com" className="link-underline">raptor</a>, and{" "}
-              <a href="https://ricos.site" className="link-underline">ricos.site</a>,
-              plus a pile of open-source side projects. Shaders, websocket
-              servers, payments, databases, and the CLIs that glue them.
-              One TypeScript codebase, browser to mobile.
+              {siteConfig.legalName} operates its own open-source products:
+              multiplayer games, asset pipelines, publishing systems, WebGL
+              galleries, CLI tools, SaaS-style utilities, and cross-platform
+              apps. The same product engineering practice is available for
+              select client builds.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
@@ -46,18 +45,20 @@ export function Hero() {
                 See the work
               </a>
               <a
-                href="#contact"
+                href={siteConfig.socials.github}
+                target="_blank"
+                rel="noreferrer"
                 className="text-foreground/70 underline decoration-foreground/20 underline-offset-[5px] transition hover:text-foreground hover:decoration-foreground/60"
               >
-                Say hi →
+                View GitHub
               </a>
             </div>
 
             <dl className="mt-12 grid max-w-md grid-cols-3 gap-x-6 text-sm">
               {[
-                { k: "Based", v: "Berlin / Wyoming" },
-                { k: "Stack", v: "TypeScript everywhere" },
-                { k: "Open source", v: "Most of it" },
+                { k: "Projects", v: `${projectStats.total} public repos` },
+                { k: "Lines", v: "Games / Tools / Art" },
+                { k: "Stack", v: "TypeScript + WebGL" },
               ].map((item) => (
                 <div key={item.k}>
                   <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground/45">
@@ -97,7 +98,7 @@ export function Hero() {
               {shouldRender3D ? <HeroScene /> : null}
             </div>
             <div className="pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/40">
-              touch the glass
+              live systems, public source
             </div>
           </div>
         </div>

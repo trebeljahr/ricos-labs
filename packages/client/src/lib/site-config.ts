@@ -1,10 +1,9 @@
 export const siteConfig = {
   name: "Ricos Labs",
   legalName: "Ricos Labs LLC",
-  tagline:
-    "An independent software studio building games, real-time apps, and developer tools.",
+  tagline: "Open-source games, tools, and interactive art.",
   description:
-    "Ricos Labs is an independent software studio. We design and ship multiplayer games, 3D graphics demos, content platforms, and cross-platform apps. One TypeScript codebase, browser to mobile.",
+    "Ricos Labs is an open-source product studio building games, developer tools, SaaS-shaped utilities, WebGL galleries, and cross-platform software products.",
   domain: "ricoslabs.com",
   url: "https://ricoslabs.com",
   language: "en-US",
@@ -46,18 +45,18 @@ export const siteConfig = {
   },
 
   seo: {
-    title: "Ricos Labs | Games, Real-Time Apps & Developer Tools",
+    title: "Ricos Labs | Open-Source Games, Tools & Interactive Art",
     description:
-      "Ricos Labs builds multiplayer games, real-time web apps, 3D/WebGL experiences, and developer tools from one TypeScript codebase.",
-    ogTitle: "Ricos Labs LLC | Games, Real-Time Apps & Developer Tools",
+      "Ricos Labs builds open-source games, developer tools, SaaS-shaped utilities, real-time apps, and 3D/WebGL experiences.",
+    ogTitle: "Ricos Labs LLC | Open-Source Product Studio",
     ogDescription:
-      "Independent software studio shipping multiplayer games, real-time apps, 3D/WebGL experiences, and developer tools for browser, desktop, and mobile.",
+      "Open-source product studio shipping games, developer tools, SaaS-shaped utilities, and interactive art for browser, desktop, and mobile.",
     updatedAt: "2026-05-13",
     image: {
       path: "/opengraph-image",
       width: 1200,
       height: 630,
-      alt: "Ricos Labs LLC: games, real-time apps, and developer tools for the browser.",
+      alt: "Ricos Labs LLC: open-source games, tools, and interactive art.",
     },
     themeColor: {
       light: "#F6EFE2",
@@ -66,11 +65,15 @@ export const siteConfig = {
     keywords: [
       "Ricos Labs",
       "Rico Trebeljahr",
+      "open-source product studio",
       "software studio",
+      "game studio",
       "multiplayer game development",
       "real-time web apps",
+      "SaaS tools",
       "WebSocket development",
       "3D WebGL experiences",
+      "interactive art",
       "React Three Fiber",
       "TypeScript studio",
       "developer tooling",

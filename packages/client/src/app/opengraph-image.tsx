@@ -69,7 +69,7 @@ export default function OpengraphImage() {
               color: brand.palette[2].hex,
             }}
           >
-            {brand.promise}
+            Open-source product studio
           </div>
           <div
             style={{
@@ -79,7 +79,7 @@ export default function OpengraphImage() {
               letterSpacing: 0,
             }}
           >
-            Games, real-time apps, and developer tools for the browser.
+            Games, tools, and interactive art built in public.
           </div>
         </div>
 
@@ -91,7 +91,7 @@ export default function OpengraphImage() {
             color: "rgba(246,239,226,0.6)",
           }}
         >
-          <span>playtiao.com · raptor.trebeljahr.com · ricos.site</span>
+          <span>playtiao.com · sprites.trebeljahr.com · beauty.trebeljahr.com</span>
           <span>ricoslabs.com</span>
         </div>
       </div>

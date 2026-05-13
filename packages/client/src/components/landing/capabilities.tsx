@@ -30,9 +30,9 @@ export function Capabilities() {
     <section id="capabilities" className="relative py-24 sm:py-28">
       <div className="container-narrow">
         <div className="mb-14 max-w-2xl">
-          <div className="eyebrow">What the studio does</div>
+          <div className="eyebrow">Studio capabilities</div>
           <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-            Six things we do well. Most of it is already running in{" "}
+            Six things Ricos Labs builds well. Most of it is already running in{" "}
             <span className="italic">production</span>.
           </h2>
         </div>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { featuredProjects } from "@/lib/projects-data";
 
 export function ProjectsFeatured() {
@@ -8,41 +8,70 @@ export function ProjectsFeatured() {
       <div className="container-narrow">
         <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div className="max-w-xl">
-            <div className="eyebrow">Selected work</div>
+            <div className="eyebrow">Current builds</div>
             <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-              Three things we made <span className="italic">recently</span>.
+              Open-source products the studio is actively shaping.
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-foreground/65">
-            All live in production. All open source. We did the design, the
-            code, the servers, and the ship.
+            Recent commits point toward three operating lines: games, tools,
+            and interactive art. Every project links to its public repo.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-x-8 gap-y-14 lg:grid-cols-2">
           {featuredProjects.map((project, i) => (
-            <a
+            <article
               key={project.title}
-              href={project.url}
-              target="_blank"
-              rel="noreferrer"
               className="group flex flex-col"
             >
-              <div className="relative aspect-[16/11] overflow-hidden rounded-md bg-secondary ring-1 ring-foreground/10">
+              <a
+                href={project.url ?? project.source}
+                target="_blank"
+                rel="noreferrer"
+                className="relative aspect-[16/10] overflow-hidden rounded-md bg-secondary ring-1 ring-foreground/10"
+                aria-label={`Open ${project.title}`}
+              >
                 <Image
                   src={project.image}
-                  alt={`${project.title} screenshot`}
+                  alt={`${project.title} project image`}
                   fill
-                  sizes="(min-width: 1024px) 33vw, 100vw"
-                  className="object-cover transition duration-700 group-hover:scale-[1.04]"
-                  priority={i === 0}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover transition duration-700 group-hover:scale-[1.035]"
+                  priority={i < 2}
                 />
-              </div>
+              </a>
               <div className="mt-5 flex items-start justify-between gap-3">
-                <h3 className="font-display text-2xl leading-tight">
-                  {project.title}
-                </h3>
-                <ArrowUpRight className="mt-1 h-5 w-5 flex-shrink-0 text-foreground/40 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
+                <div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground/45">
+                    {project.status}
+                  </div>
+                  <h3 className="mt-1 font-display text-2xl leading-tight">
+                    {project.title}
+                  </h3>
+                </div>
+                <div className="flex flex-shrink-0 items-center gap-2">
+                  {project.url ? (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Open ${project.title}`}
+                      className="grid h-9 w-9 place-items-center rounded-md border border-foreground/15 text-foreground/55 transition hover:border-primary/50 hover:text-primary"
+                    >
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  ) : null}
+                  <a
+                    href={project.source}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`View ${project.title} source`}
+                    className="grid h-9 w-9 place-items-center rounded-md border border-foreground/15 text-foreground/55 transition hover:border-primary/50 hover:text-primary"
+                  >
+                    <Github className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
               <p className="mt-1 text-sm italic text-foreground/55">
                 {project.tagline}
@@ -55,7 +84,7 @@ export function ProjectsFeatured() {
                   <span key={t}>{t}</span>
                 ))}
               </div>
-            </a>
+            </article>
           ))}
         </div>
       </div>

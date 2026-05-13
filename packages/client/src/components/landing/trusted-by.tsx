@@ -21,8 +21,8 @@ export function TrustedBy() {
         <div className="mb-10 max-w-2xl">
           <div className="eyebrow">Track record</div>
           <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl">
-            Production work, and a stint{" "}
-            <span className="italic">teaching</span> it.
+            Production experience across games, payments, tooling, and{" "}
+            <span className="italic">education</span>.
           </h2>
         </div>
         <ul className="grid grid-cols-2 items-center gap-x-8 gap-y-10 border-t border-foreground/10 pt-10 sm:grid-cols-3 lg:grid-cols-6">
