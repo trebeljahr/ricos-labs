@@ -205,31 +205,6 @@ export const projects: Project[] = [
     source: "https://github.com/trebeljahr/quaternius-showcase",
   },
   {
-    title: "Where Are My Friends",
-    slug: "wherearemyfriends",
-    category: "tools",
-    status: "Prototype",
-    tagline: "Privacy-controlled location sharing",
-    description:
-      "A consent-first location app where friends can share country, city, or exact location on their own terms, with web and mobile surfaces in mind.",
-    image: "/images/wherearemyfriends.png",
-    tech: ["React", "Vite", "MapLibre", "Flutter", "Node.js"],
-    url: "https://wherearemyfriends.info",
-    source: "https://github.com/trebeljahr/wherearemyfriends.info",
-  },
-  {
-    title: "Better Bookmarks",
-    slug: "better-bookmarks",
-    category: "tools",
-    status: "Prototype",
-    tagline: "Relationship-aware bookmark manager",
-    description:
-      "A Chrome extension experiment for connected bookmarks, tags, page metadata, reading time, content type, and personal retrieval workflows.",
-    image: "/images/better-bookmarks.png",
-    tech: ["Chrome Extension", "React", "MUI", "TypeScript"],
-    source: "https://github.com/trebeljahr/better-bookmarks",
-  },
-  {
     title: "Collection of Beauty",
     slug: "collection-of-beauty",
     category: "art",
