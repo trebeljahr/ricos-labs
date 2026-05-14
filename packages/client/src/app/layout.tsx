@@ -34,7 +34,6 @@ const ogImage = {
 const plausibleDomain = "ricoslabs.com";
 const plausibleScriptUrl =
   "https://plausible.trebeljahr.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js";
-const shouldLoadPlausible = process.env.NODE_ENV === "production";
 
 export const metadata: Metadata = {
   other: process.env.NEXT_PUBLIC_BUILD_COMMIT
@@ -145,9 +144,8 @@ export default function RootLayout({
         )}
       </head>
       <body className="min-h-screen bg-background text-foreground font-sans">
-        {shouldLoadPlausible ? (
-          <Script id="plausible-loader" strategy="afterInteractive">
-            {`
+        <Script id="plausible-loader" strategy="afterInteractive">
+          {`
               (function () {
                 var domain = ${JSON.stringify(plausibleDomain)};
                 if (location.hostname !== domain) return;
@@ -161,8 +159,7 @@ export default function RootLayout({
                 document.head.appendChild(script);
               })();
             `}
-          </Script>
-        ) : null}
+        </Script>
         <a href="#main" className="skip-to-content">
           Skip to content
         </a>
