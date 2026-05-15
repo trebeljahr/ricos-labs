@@ -41,11 +41,6 @@ export function Services() {
             Available when the brief overlaps with the studio&apos;s own{" "}
             <span className="italic">product practice</span>.
           </h2>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground/75">
-            Client work stays intentionally close to the systems Ricos Labs
-            already builds and operates: multiplayer, graphics, cross-platform
-            apps, developer tools, and production infrastructure.
-          </p>
         </div>
 
         <ol className="grid gap-px overflow-hidden rounded-2xl bg-foreground/10 sm:grid-cols-2">

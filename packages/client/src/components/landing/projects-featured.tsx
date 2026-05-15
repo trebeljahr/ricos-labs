@@ -6,17 +6,11 @@ export function ProjectsFeatured() {
   return (
     <section id="projects" className="py-24 sm:py-28">
       <div className="container-narrow">
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-          <div className="max-w-xl">
-            <div className="eyebrow">Current builds</div>
-            <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-              Open-source products the studio is actively shaping.
-            </h2>
-          </div>
-          <p className="max-w-sm text-sm leading-relaxed text-foreground/65">
-            Recent commits point toward three operating lines: games, tools,
-            and interactive art. Every project links to its public repo.
-          </p>
+        <div className="mb-12 max-w-xl">
+          <div className="eyebrow">Current builds</div>
+          <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
+            Open-source products in active shape.
+          </h2>
         </div>
 
         <div className="grid gap-x-8 gap-y-14 lg:grid-cols-2">
@@ -75,9 +69,6 @@ export function ProjectsFeatured() {
               </div>
               <p className="mt-1 text-sm italic text-foreground/55">
                 {project.tagline}
-              </p>
-              <p className="mt-3 text-[15px] leading-relaxed text-foreground/75">
-                {project.description}
               </p>
               <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[0.12em] text-foreground/50">
                 {project.tech.map((t) => (

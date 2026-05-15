@@ -9,31 +9,21 @@ export function ProjectsGrid() {
         <div className="mb-16 max-w-2xl">
           <div className="eyebrow">Project catalog</div>
           <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-            More games, tools, and art from the public archive.
+            More games, tools, and art.
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-foreground/65">
-            Live deployments when available, public source in every case.
-            Older prototypes stay visible because the accumulated engineering
-            work is part of the studio.
-          </p>
         </div>
 
         <div className="space-y-24">
           {additionalProjectsByCategory.map((category) => (
             <section key={category.id} aria-labelledby={`${category.id}-heading`}>
-              <div className="mb-9 grid gap-5 border-t border-foreground/10 pt-8 lg:grid-cols-[0.75fr,1.25fr]">
-                <div>
-                  <div className="eyebrow">{category.label}</div>
-                  <h3
-                    id={`${category.id}-heading`}
-                    className="mt-3 font-display text-3xl leading-tight sm:text-4xl"
-                  >
-                    {category.title}
-                  </h3>
-                </div>
-                <p className="max-w-2xl text-sm leading-relaxed text-foreground/65 lg:pt-8">
-                  {category.description}
-                </p>
+              <div className="mb-9 border-t border-foreground/10 pt-8">
+                <div className="eyebrow">{category.label}</div>
+                <h3
+                  id={`${category.id}-heading`}
+                  className="mt-3 max-w-2xl font-display text-3xl leading-tight sm:text-4xl"
+                >
+                  {category.title}
+                </h3>
               </div>
 
               <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
@@ -88,9 +78,6 @@ export function ProjectsGrid() {
                     </div>
                     <p className="mt-1 text-sm italic text-foreground/55">
                       {project.tagline}
-                    </p>
-                    <p className="mt-3 text-[15px] leading-relaxed text-foreground/70">
-                      {project.description}
                     </p>
                     <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-[0.12em] text-foreground/45">
                       {project.tech.slice(0, 4).map((t) => (

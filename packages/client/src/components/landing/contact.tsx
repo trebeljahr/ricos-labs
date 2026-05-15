@@ -34,11 +34,6 @@ export function Contact() {
             <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
               Product builds, partnerships, and technical collaborations.
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-foreground/75">
-              Ricos Labs is open to selected outside work when the problem fits
-              the studio: games, real-time systems, WebGL, cross-platform apps,
-              developer tools, and production infrastructure.
-            </p>
             <a
               href={`mailto:${siteConfig.contact.email}`}
               className="mt-8 inline-flex h-11 items-center rounded-md bg-foreground px-5 text-sm font-medium text-background transition hover:bg-foreground/90"

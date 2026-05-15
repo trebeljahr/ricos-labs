@@ -30,11 +30,9 @@ export function Hero() {
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/75">
-              {siteConfig.legalName} operates its own open-source products:
-              multiplayer games, asset pipelines, publishing systems, WebGL
-              galleries, CLI tools, SaaS-style utilities, and cross-platform
-              apps. The same product engineering practice is available for
-              select client builds.
+              Open-source products across multiplayer games, developer tools,
+              WebGL, and cross-platform apps. Select client builds when the
+              overlap is real.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
