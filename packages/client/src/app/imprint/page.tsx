@@ -178,6 +178,23 @@ export default function ImprintPage() {
                 repository.
               </p>
             </section>
+
+            <section>
+              <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                Credits
+              </h2>
+              <p className="mt-3 text-muted-foreground">
+                Favicon:{" "}
+                <a
+                  href="https://www.flaticon.com/free-icons/flask"
+                  title="flask icons"
+                  className="underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
+                >
+                  Flask icons created by Freepik - Flaticon
+                </a>
+                .
+              </p>
+            </section>
           </div>
         </div>
       </main>
