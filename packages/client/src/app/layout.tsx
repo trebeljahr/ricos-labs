@@ -34,6 +34,7 @@ const ogImage = {
 const plausibleDomain = "ricoslabs.com";
 const plausibleScriptUrl =
   "https://plausible.trebeljahr.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js";
+const shouldLoadPlausible = process.env.NODE_ENV === "production";
 
 export const metadata: Metadata = {
   other: process.env.NEXT_PUBLIC_BUILD_COMMIT
@@ -57,7 +58,10 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: [{ url: "/icon.png", type: "image/png", sizes: "512x512" }],
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
     shortcut: "/icon.png",
     apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
   },
@@ -141,8 +145,9 @@ export default function RootLayout({
         )}
       </head>
       <body className="min-h-screen bg-background text-foreground font-sans">
-        <Script id="plausible-loader" strategy="afterInteractive">
-          {`
+        {shouldLoadPlausible ? (
+          <Script id="plausible-loader" strategy="afterInteractive">
+            {`
               (function () {
                 var domain = ${JSON.stringify(plausibleDomain)};
                 if (location.hostname !== domain) return;
@@ -156,7 +161,8 @@ export default function RootLayout({
                 document.head.appendChild(script);
               })();
             `}
-        </Script>
+          </Script>
+        ) : null}
         <a href="#main" className="skip-to-content">
           Skip to content
         </a>

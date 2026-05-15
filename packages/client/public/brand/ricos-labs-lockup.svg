@@ -1,23 +1,33 @@
 <svg viewBox="0 0 430 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ricos Labs lockup">
   <defs>
-    <linearGradient id="signal" x1="49" y1="62" x2="70" y2="77" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#D95D3E"/>
-      <stop offset="0.52" stop-color="#F09A56"/>
-      <stop offset="1" stop-color="#35C4D8"/>
-    </linearGradient>
-    <radialGradient id="field" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(61 44) rotate(128) scale(48 56)">
-      <stop offset="0" stop-color="#26304A"/>
-      <stop offset="0.48" stop-color="#12141E"/>
-      <stop offset="1" stop-color="#080912"/>
+    <radialGradient id="lockup-orb" cx="50%" cy="42%" r="62%">
+      <stop offset="0%" stop-color="#2c2050"/>
+      <stop offset="55%" stop-color="#120e22"/>
+      <stop offset="100%" stop-color="#06050f"/>
     </radialGradient>
+    <linearGradient id="lockup-bolt" x1="10%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stop-color="#c4b5fd"/>
+      <stop offset="45%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#67e8f9"/>
+    </linearGradient>
+    <radialGradient id="lockup-halo" cx="50%" cy="42%" r="50%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#a855f7" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="lockup-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.6"/>
+    </filter>
   </defs>
   <rect width="430" height="112" rx="8" fill="#F6EFE2"/>
   <g transform="translate(24 24)">
-    <rect width="64" height="64" rx="14" fill="url(#field)"/>
-    <path d="M21 49V15h16.5C45 15 50 19.4 50 26.8S44.7 38.5 36.8 38.5H21" fill="none" stroke="#F6EFE2" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M35.5 38.5 48 49" fill="none" stroke="url(#signal)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M28 25.5h9.2" fill="none" stroke="#35C4D8" stroke-width="3" stroke-linecap="round" opacity="0.95"/>
-    <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="#F6EFE2" stroke-opacity="0.12" stroke-width="2"/>
+    <rect width="64" height="64" rx="14" fill="url(#lockup-orb)"/>
+    <circle cx="32" cy="28" r="22" fill="url(#lockup-halo)"/>
+    <ellipse cx="22" cy="16" rx="9" ry="5" fill="#ffffff" opacity="0.12"/>
+    <path d="M20 13 L33 27 L25 33 L44 52" stroke="url(#lockup-bolt)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55" filter="url(#lockup-glow)"/>
+    <path d="M20 13 L33 27 L25 33 L44 52" stroke="url(#lockup-bolt)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="44" cy="52" r="4.5" fill="#67e8f9" opacity="0.4" filter="url(#lockup-glow)"/>
+    <circle cx="44" cy="52" r="2" fill="#ecfeff"/>
   </g>
   <text x="108" y="58" fill="#12141E" font-family="Georgia, 'Times New Roman', serif" font-size="42" letter-spacing="0">Ricos Labs</text>
   <text x="111" y="80" fill="#D95D3E" font-family="'JetBrains Mono', 'SFMono-Regular', Consolas, monospace" font-size="10" letter-spacing="3.6">REAL-TIME SOFTWARE STUDIO</text>
