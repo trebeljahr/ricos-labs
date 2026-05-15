@@ -155,9 +155,9 @@ export const otherProjects: Project[] = [
   {
     title: "Chess App",
     url: "https://github.com/trebeljahr/chess-app",
-    tagline: "Modern stack revamp of my first-ever project",
+    tagline: "Full-stack chess platform with AI opponent",
     description:
-      "Rebuilt from scratch on a modern stack. Typed move generation, AI opponent, board editor, PGN import/export.",
+      "Typed move generation, AI opponent, board editor, PGN import/export — rebuilt from scratch on a modern stack.",
     image: "/images/chess.png",
     tech: ["TypeScript", "React"],
     source: "https://github.com/trebeljahr/chess-app",
