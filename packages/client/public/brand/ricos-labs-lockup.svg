@@ -1,40 +1,22 @@
 <svg viewBox="0 0 430 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ricos Labs lockup">
   <defs>
-    <clipPath id="lockup-pill"><rect x="0" y="0" width="64" height="64" rx="14"/></clipPath>
-    <clipPath id="lockup-left"><rect x="0" y="0" width="31" height="64"/></clipPath>
-    <clipPath id="lockup-right"><rect x="33" y="0" width="31" height="64"/></clipPath>
-    <linearGradient id="lockup-signal" x1="32" y1="10" x2="32" y2="54" gradientUnits="userSpaceOnUse">
+    <linearGradient id="signal" x1="49" y1="62" x2="70" y2="77" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#D95D3E"/>
+      <stop offset="0.52" stop-color="#F09A56"/>
       <stop offset="1" stop-color="#35C4D8"/>
     </linearGradient>
-    <radialGradient id="lockup-field" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42 18) rotate(128) scale(48 56)">
+    <radialGradient id="field" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(61 44) rotate(128) scale(48 56)">
       <stop offset="0" stop-color="#26304A"/>
       <stop offset="0.48" stop-color="#12141E"/>
       <stop offset="1" stop-color="#080912"/>
     </radialGradient>
-    <path id="lockup-r" d="
-      M14 10 H40
-      C49 10, 54 15, 54 24
-      C54 31, 50 36, 42 36
-      L54 54 H44
-      L30 38 H22 V54 H14 Z
-      M22 16 H38
-      C43 16, 46 19, 46 24
-      C46 29, 43 32, 38 32
-      H22 Z
-    "/>
   </defs>
   <rect width="430" height="112" rx="8" fill="#F6EFE2"/>
   <g transform="translate(24 24)">
-    <g clip-path="url(#lockup-pill)">
-      <rect width="64" height="64" fill="url(#lockup-field)"/>
-      <g clip-path="url(#lockup-left)">
-        <use href="#lockup-r" fill="#F6EFE2" fill-rule="evenodd"/>
-      </g>
-      <g clip-path="url(#lockup-right)">
-        <use href="#lockup-r" fill="url(#lockup-signal)" fill-rule="evenodd"/>
-      </g>
-    </g>
+    <rect width="64" height="64" rx="14" fill="url(#field)"/>
+    <path d="M21 49V15h16.5C45 15 50 19.4 50 26.8S44.7 38.5 36.8 38.5H21" fill="none" stroke="#F6EFE2" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M35.5 38.5 48 49" fill="none" stroke="url(#signal)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M28 25.5h9.2" fill="none" stroke="#35C4D8" stroke-width="3" stroke-linecap="round" opacity="0.95"/>
     <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="#F6EFE2" stroke-opacity="0.12" stroke-width="2"/>
   </g>
   <text x="108" y="58" fill="#12141E" font-family="Georgia, 'Times New Roman', serif" font-size="42" letter-spacing="0">Ricos Labs</text>
