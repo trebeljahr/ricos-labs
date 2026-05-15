@@ -23,9 +23,6 @@ export function Footer() {
           </div>
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-foreground/65">
-            <a href={siteConfig.socials.portfolio} target="_blank" rel="noreferrer" className="hover:text-foreground">
-              Portfolio
-            </a>
             <a href={siteConfig.socials.blog} target="_blank" rel="noreferrer" className="hover:text-foreground">
               Blog
             </a>
@@ -39,15 +36,6 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 max-w-2xl text-xs leading-relaxed text-foreground/50">
-          Operated under {siteConfig.legalName} ·{" "}
-          {siteConfig.entity.type} ({siteConfig.entity.jurisdiction}). For
-          legal contact see the{" "}
-          <Link href="/imprint" className="underline underline-offset-2 hover:text-foreground">
-            imprint
-          </Link>
-          .
-        </div>
       </div>
     </footer>
   );

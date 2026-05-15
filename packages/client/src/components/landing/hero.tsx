@@ -30,12 +30,12 @@ export function Hero() {
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/75">
               {siteConfig.legalName} built{" "}
-              <a href="https://playtiao.com" className="link-underline">tiao</a>,{" "}
-              <a href="https://raptor.trebeljahr.com" className="link-underline">raptor</a>, and{" "}
-              <a href="https://ricos.site" className="link-underline">ricos.site</a>,
-              plus a pile of open-source side projects. Shaders, websocket
-              servers, payments, databases, and the CLIs that glue them.
-              One TypeScript codebase, browser to mobile.
+              <a href="https://playtiao.com" className="link-underline">playtiao.com</a>,{" "}
+              <a href="https://raptor.trebeljahr.com" className="link-underline">Raptor Runner</a>, and{" "}
+              <a href="https://ricos.site" className="link-underline">ricos.site</a>{" "}
+              along with a growing collection of open-source projects. Shaders,
+              websocket servers, payments, databases, and the CLIs that glue
+              them.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
@@ -53,20 +53,6 @@ export function Hero() {
               </a>
             </div>
 
-            <dl className="mt-12 grid max-w-md grid-cols-3 gap-x-6 text-sm">
-              {[
-                { k: "Based", v: "Berlin / Wyoming" },
-                { k: "Stack", v: "TypeScript everywhere" },
-                { k: "Open source", v: "Most of it" },
-              ].map((item) => (
-                <div key={item.k}>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground/45">
-                    {item.k}
-                  </dt>
-                  <dd className="mt-1 text-foreground/85">{item.v}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
           <div

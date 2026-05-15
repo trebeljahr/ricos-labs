@@ -17,11 +17,6 @@ const facts = [
     value: "Fixed-scope milestones",
     detail: "Weekly invoices, no retainers, no surprises.",
   },
-  {
-    label: "Where",
-    value: "Berlin / Wyoming",
-    detail: "EU + US working hours, async-friendly by default.",
-  },
 ];
 
 export function Contact() {
@@ -32,7 +27,7 @@ export function Contact() {
           <div className="max-w-xl">
             <div className="eyebrow">Contact</div>
             <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-              Product builds, partnerships, and technical collaborations.
+              Have a project? Let&apos;s talk.
             </h2>
             <a
               href={`mailto:${siteConfig.contact.email}`}

@@ -32,8 +32,7 @@ export function Capabilities() {
         <div className="mb-14 max-w-2xl">
           <div className="eyebrow">Studio capabilities</div>
           <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-            Six things Ricos Labs builds well. Most of it is already running in{" "}
-            <span className="italic">production</span>.
+            What we <span className="italic">build</span>.
           </h2>
         </div>
 

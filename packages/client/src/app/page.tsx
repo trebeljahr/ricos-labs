@@ -6,7 +6,6 @@ import { Hero } from "@/components/landing/hero";
 import { Nav } from "@/components/landing/nav";
 import { ProjectsFeatured } from "@/components/landing/projects-featured";
 import { ProjectsGrid } from "@/components/landing/projects-grid";
-import { Services } from "@/components/landing/services";
 import { TrustedBy } from "@/components/landing/trusted-by";
 import { getLandingPageJsonLd, stringifyJsonLd } from "@/lib/structured-data";
 
@@ -26,7 +25,6 @@ export default function LandingPage() {
         <ProjectsGrid />
         <Divider />
         <Capabilities />
-        <Services />
         <TrustedBy />
         <Contact />
       </main>

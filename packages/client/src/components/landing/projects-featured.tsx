@@ -14,8 +14,7 @@ export function ProjectsFeatured() {
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-foreground/65">
-            All live in production. All open source. We did the design, the
-            code, the servers, and the ship.
+            Designed, built, deployed, and maintained in-house. All open source.
           </p>
         </div>
 
