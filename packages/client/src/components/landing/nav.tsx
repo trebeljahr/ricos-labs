@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { BrandMark } from "@/components/brand/brand-mark";
 import { ThemeToggle } from "./theme-toggle";
 
 const navLinks = [
@@ -89,7 +89,7 @@ export function Nav(): React.JSX.Element {
     <header className="sticky top-0 z-40 w-full border-b border-foreground/10 bg-background/85 backdrop-blur">
       <div className="container-narrow flex h-14 items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <BrandMark idPrefix="nav-brand-mark" className="h-8 w-8 shrink-0" />
+          <Image src="/icon.png" alt="" width={32} height={32} className="h-8 w-8 shrink-0" />
           <span className="flex items-baseline gap-2">
             <span className="font-display text-xl leading-none">
               Ricos Labs

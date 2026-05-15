@@ -70,8 +70,8 @@ export const brand = {
     },
     {
       name: "App icon",
-      href: "/brand/ricos-labs-mark.svg",
-      description: "Square mark for favicon, avatars, and app tiles.",
+      href: "/icon.png",
+      description: "Flask mark for favicon, avatars, and app tiles.",
     },
   ],
 } as const;
