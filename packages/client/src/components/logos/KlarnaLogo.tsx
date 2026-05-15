@@ -1,7 +1,7 @@
 import type { SVGProps } from "react";
 
 export const KlarnaLogo = (props: SVGProps<SVGSVGElement>) => (
-  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -80 800 640" {...props}>
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 445" {...props}>
     <g fillRule="evenodd" transform="translate(.236 .3) scale(17.769)">
       <rect width={45} height={25} fill="#ffb3c7" rx={4.321} />
       <path

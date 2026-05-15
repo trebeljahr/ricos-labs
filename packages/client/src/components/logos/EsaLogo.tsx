@@ -1,7 +1,7 @@
 import type { SVGProps } from "react";
 
 export const EsaLogo = (props: SVGProps<SVGSVGElement>) => (
-  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 -25 110 100" {...props}>
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 40" {...props}>
     <path
       d="M411.625 430.607h7.86s.311-1.182-1.088-2.953c-2.766-2.857-5.872-.962-5.872-.962-1.523.807-3.479 4.163-2.331 8.98 1.431 4.816 6.93 5.807 10.346 4.689 2.261-.74 3.565-2.37 4.192-3.394a19.45 19.45 0 0 0 .437-2.478h-13.544v-3.882z"
       style={{

@@ -4,14 +4,45 @@ import { HenkelLogo } from "@/components/logos/HenkelLogo";
 import { IronhackLogo } from "@/components/logos/IronhackLogo";
 import { KlarnaLogo } from "@/components/logos/KlarnaLogo";
 import { SoftgamesLogo } from "@/components/logos/SoftgamesLogo";
+import { cn } from "@/lib/utils";
 
 const brands = [
-  { name: "European Space Agency", Logo: EsaLogo, detail: "Spacecraft trajectory tooling" },
-  { name: "Klarna", Logo: KlarnaLogo, detail: "Payments infrastructure" },
-  { name: "Henkel", Logo: HenkelLogo, detail: "Internal tooling" },
-  { name: "flowkey", Logo: FlowkeyLogo, detail: "Music education product" },
-  { name: "Softgames", Logo: SoftgamesLogo, detail: "HTML5 game engineering" },
-  { name: "Ironhack", Logo: IronhackLogo, detail: "Engineering instruction" },
+  {
+    name: "European Space Agency",
+    Logo: EsaLogo,
+    detail: "Spacecraft trajectory tooling",
+    logoClassName: "h-8",
+  },
+  {
+    name: "Klarna",
+    Logo: KlarnaLogo,
+    detail: "Payments infrastructure",
+    logoClassName: "h-8",
+  },
+  {
+    name: "Henkel",
+    Logo: HenkelLogo,
+    detail: "Internal tooling",
+    logoClassName: "h-8",
+  },
+  {
+    name: "flowkey",
+    Logo: FlowkeyLogo,
+    detail: "Music education product",
+    logoClassName: "h-8",
+  },
+  {
+    name: "Softgames",
+    Logo: SoftgamesLogo,
+    detail: "HTML5 game engineering",
+    logoClassName: "h-6",
+  },
+  {
+    name: "Ironhack",
+    Logo: IronhackLogo,
+    detail: "Engineering instruction",
+    logoClassName: "h-10",
+  },
 ];
 
 export function TrustedBy() {
@@ -25,14 +56,18 @@ export function TrustedBy() {
             <span className="italic">education</span>.
           </h2>
         </div>
-        <ul className="grid grid-cols-2 items-center gap-x-8 gap-y-10 border-t border-foreground/10 pt-10 sm:grid-cols-3 lg:grid-cols-6">
-          {brands.map(({ name, Logo, detail }) => (
-            <li key={name} className="flex flex-col items-start">
-              <div className="flex h-10 w-full items-center justify-start">
+        <ul className="grid grid-cols-2 items-start gap-x-8 gap-y-10 border-t border-foreground/10 pt-10 sm:grid-cols-3 lg:grid-cols-6">
+          {brands.map(({ name, Logo, detail, logoClassName }) => (
+            <li key={name} className="flex min-w-0 flex-col items-start">
+              <div className="flex h-12 w-full items-center justify-start">
                 <Logo
                   role="img"
+                  aria-hidden={false}
                   aria-label={name}
-                  className="h-full w-auto max-w-[140px] text-foreground/85"
+                  className={cn(
+                    "w-auto max-w-full shrink-0 text-foreground/85",
+                    logoClassName,
+                  )}
                 />
               </div>
               <span className="mt-3 text-xs leading-snug text-foreground/55">

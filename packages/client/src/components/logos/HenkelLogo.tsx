@@ -1,7 +1,7 @@
 import type { SVGProps } from "react";
 
 export const HenkelLogo = (props: SVGProps<SVGSVGElement>) => (
-  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="161 434 438 248" {...props}>
+  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="164 437 428 239" {...props}>
     <path
       d="M 170.40204,556.27662 C 170.40204,491.20427 266.9159,442.74875 378.32383,442.74875 C 489.73179,442.74875 586.29527,491.20427 586.29527,556.27662 C 586.29527,621.36889 489.73179,669.70519 378.32383,669.70519 C 266.9159,669.70519 170.40204,621.36889 170.40204,556.27662"
       style={{ fill: "white", fillRule: "nonzero", stroke: "none" }}

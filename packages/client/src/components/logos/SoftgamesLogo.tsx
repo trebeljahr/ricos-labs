@@ -6,7 +6,7 @@ export const SoftgamesLogo = (props: SVGProps<SVGSVGElement>) => (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     className="logo-img"
-    viewBox="0 -100 230 200"
+    viewBox="0 0 231 42"
     {...props}
   >
     <path fill="#F5842D" d="M231 0H0v42h231V0Z" className="logo-bg" />
