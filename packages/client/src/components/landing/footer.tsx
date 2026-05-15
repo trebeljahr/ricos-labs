@@ -23,9 +23,6 @@ export function Footer() {
             <a href={siteConfig.socials.blog} target="_blank" rel="noreferrer" className="hover:text-foreground">
               Blog
             </a>
-            <a href={siteConfig.socials.github} target="_blank" rel="noreferrer" className="hover:text-foreground">
-              GitHub
-            </a>
             <Link href="/imprint" className="hover:text-foreground">Imprint</Link>
             <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-foreground">
               {siteConfig.contact.email}

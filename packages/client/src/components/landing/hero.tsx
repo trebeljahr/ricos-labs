@@ -20,7 +20,7 @@ export function Hero() {
       <div className="container-narrow relative pt-16 pb-20 sm:pt-24 sm:pb-28">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr,1.05fr]">
           <div className="relative z-10 max-w-2xl">
-            <div className="eyebrow">An independent studio · est. 2026</div>
+            <div className="eyebrow">An independent studio</div>
 
             <h1 className="mt-5 text-balance text-[2.4rem] leading-[1.05] sm:text-[3.4rem] sm:leading-[1.02]">
               <span className="font-display">We ship </span>
