@@ -84,7 +84,7 @@ export const otherProjects: Project[] = [
   },
   {
     title: "Interactive 3D Demos",
-    url: "https://ricos.site/r3f/scenes/plasma-ball",
+    url: "https://ricos.site/r3f/scenes/shader-art-demo",
     tagline: "39 demos in React Three Fiber and custom GLSL",
     description:
       "A library of interactive scenes: plasma balls, particle fields, post-processing pipelines, shader experiments. Written and tuned by hand.",
