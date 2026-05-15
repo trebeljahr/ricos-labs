@@ -10,11 +10,7 @@ export function BrandMark({
   title,
   ...props
 }: BrandMarkProps) {
-  const signalId = `${idPrefix}-signal`;
   const fieldId = `${idPrefix}-field`;
-  const rId = `${idPrefix}-r`;
-  const leftClipId = `${idPrefix}-left`;
-  const rightClipId = `${idPrefix}-right`;
 
   return (
     <svg
@@ -26,23 +22,6 @@ export function BrandMark({
       {...props}
     >
       <defs>
-        <clipPath id={leftClipId}>
-          <rect x="0" y="0" width="29" height="64" />
-        </clipPath>
-        <clipPath id={rightClipId}>
-          <rect x="29" y="0" width="35" height="64" />
-        </clipPath>
-        <linearGradient
-          id={signalId}
-          x1="29"
-          y1="10"
-          x2="29"
-          y2="54"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="#D95D3E" />
-          <stop offset="1" stopColor="#35C4D8" />
-        </linearGradient>
         <radialGradient
           id={fieldId}
           cx="0"
@@ -55,17 +34,58 @@ export function BrandMark({
           <stop offset="0.48" stopColor="#12141E" />
           <stop offset="1" stopColor="#080912" />
         </radialGradient>
-        <path
-          id={rId}
-          d="M18 10H35C42 10 47 16 47 24C47 31 43 35.5 38 37L52 54H44L32 38H24V54H18ZM24 16V32H34C39 32 41 29 41 24C41 19 39 16 34 16Z"
-        />
       </defs>
       <rect width="64" height="64" rx="14" fill={`url(#${fieldId})`} />
-      <g clipPath={`url(#${leftClipId})`}>
-        <use href={`#${rId}`} fill="#F6EFE2" fillRule="evenodd" />
+      <g transform="translate(4, -3)" opacity="0.4">
+        <path
+          d="M19 50V14h16c8 0 13 5 13 12s-5 12-13 12H19"
+          fill="none"
+          stroke="#6F4BE8"
+          strokeWidth="6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M33 38l14 12"
+          fill="none"
+          stroke="#6F4BE8"
+          strokeWidth="6"
+          strokeLinecap="round"
+        />
       </g>
-      <g clipPath={`url(#${rightClipId})`}>
-        <use href={`#${rId}`} fill={`url(#${signalId})`} fillRule="evenodd" />
+      <g transform="translate(2, -1.5)" opacity="0.55">
+        <path
+          d="M19 50V14h16c8 0 13 5 13 12s-5 12-13 12H19"
+          fill="none"
+          stroke="#35C4D8"
+          strokeWidth="6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M33 38l14 12"
+          fill="none"
+          stroke="#35C4D8"
+          strokeWidth="6"
+          strokeLinecap="round"
+        />
+      </g>
+      <g>
+        <path
+          d="M19 50V14h16c8 0 13 5 13 12s-5 12-13 12H19"
+          fill="none"
+          stroke="#F6EFE2"
+          strokeWidth="6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M33 38l14 12"
+          fill="none"
+          stroke="#F6EFE2"
+          strokeWidth="6"
+          strokeLinecap="round"
+        />
       </g>
       <rect
         x="1"
