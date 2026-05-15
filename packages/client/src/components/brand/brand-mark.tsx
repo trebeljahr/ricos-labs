@@ -12,6 +12,9 @@ export function BrandMark({
 }: BrandMarkProps) {
   const signalId = `${idPrefix}-signal`;
   const fieldId = `${idPrefix}-field`;
+  const rId = `${idPrefix}-r`;
+  const leftClipId = `${idPrefix}-left`;
+  const rightClipId = `${idPrefix}-right`;
 
   return (
     <svg
@@ -23,16 +26,21 @@ export function BrandMark({
       {...props}
     >
       <defs>
+        <clipPath id={leftClipId}>
+          <rect x="0" y="0" width="29" height="64" />
+        </clipPath>
+        <clipPath id={rightClipId}>
+          <rect x="29" y="0" width="35" height="64" />
+        </clipPath>
         <linearGradient
           id={signalId}
-          x1="30"
-          y1="36"
-          x2="51"
-          y2="51"
+          x1="29"
+          y1="10"
+          x2="29"
+          y2="54"
           gradientUnits="userSpaceOnUse"
         >
           <stop offset="0" stopColor="#D95D3E" />
-          <stop offset="0.52" stopColor="#F09A56" />
           <stop offset="1" stopColor="#35C4D8" />
         </linearGradient>
         <radialGradient
@@ -47,32 +55,18 @@ export function BrandMark({
           <stop offset="0.48" stopColor="#12141E" />
           <stop offset="1" stopColor="#080912" />
         </radialGradient>
+        <path
+          id={rId}
+          d="M18 10H35C42 10 47 16 47 24C47 31 43 35.5 38 37L52 54H44L32 38H24V54H18ZM24 16V32H34C39 32 41 29 41 24C41 19 39 16 34 16Z"
+        />
       </defs>
       <rect width="64" height="64" rx="14" fill={`url(#${fieldId})`} />
-      <path
-        d="M21 49V15h16.5C45 15 50 19.4 50 26.8S44.7 38.5 36.8 38.5H21"
-        fill="none"
-        stroke="#F6EFE2"
-        strokeWidth="7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M35.5 38.5 48 49"
-        fill="none"
-        stroke={`url(#${signalId})`}
-        strokeWidth="7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M28 25.5h9.2"
-        fill="none"
-        stroke="#35C4D8"
-        strokeWidth="3"
-        strokeLinecap="round"
-        opacity="0.95"
-      />
+      <g clipPath={`url(#${leftClipId})`}>
+        <use href={`#${rId}`} fill="#F6EFE2" fillRule="evenodd" />
+      </g>
+      <g clipPath={`url(#${rightClipId})`}>
+        <use href={`#${rId}`} fill={`url(#${signalId})`} fillRule="evenodd" />
+      </g>
       <rect
         x="1"
         y="1"
