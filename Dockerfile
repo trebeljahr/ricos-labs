@@ -68,7 +68,8 @@ WORKDIR /app
 # running `curl … || wget … || exit 1` INSIDE it, in place of any
 # HEALTHCHECK here, and bookworm-slim ships neither. Without one the
 # probe can never pass and every deploy is rolled back. With it, a
-# replacement can wait for this container to become healthy.
+# deploy is a rolling update: the old container serves until this one
+# is healthy.
 RUN apt-get update \
   && apt-get install -y --no-install-recommends curl \
   && rm -rf /var/lib/apt/lists/*
