@@ -9,6 +9,7 @@
 services:
   client:
     image: ${CLIENT_IMAGE:-ghcr.io/trebeljahr/ricos-labs:latest}
+    pull_policy: always
     environment:
       NEXT_PUBLIC_OPENPANEL_CLIENT_ID: ${OPENPANEL_CLIENT_ID:-}
       NEXT_PUBLIC_SENTRY_DSN: ${CLIENT_SENTRY_DSN:-}
