@@ -68,8 +68,7 @@ WORKDIR /app
 # running `curl … || wget … || exit 1` INSIDE it, in place of any
 # HEALTHCHECK here, and bookworm-slim ships neither. Without one the
 # probe can never pass and every deploy is rolled back. With it, a
-# deploy is a rolling update: the old container serves until this one
-# is healthy.
+# replacement can wait for this container to become healthy.
 RUN apt-get update \
   && apt-get install -y --no-install-recommends curl \
   && rm -rf /var/lib/apt/lists/*
@@ -79,7 +78,6 @@ ENV PORT=6457
 ENV HOSTNAME=0.0.0.0
 ENV SHUTDOWN_DRAIN_SECONDS=20
 ENV HEALTH_CHECK_PATH=/
-STOPSIGNAL SIGTERM
 
 # Next.js standalone bundle is the minimal node server + deps.
 COPY --from=build /app/packages/client/.next/standalone ./
