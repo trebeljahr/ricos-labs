@@ -8,13 +8,7 @@
 
 services:
   client:
-    image: ${CLIENT_IMAGE:-ghcr.io/trebeljahr/ricos-labs:latest}
-    # Force a registry pull on every `docker compose up`. Without this,
-    # Compose reuses whichever digest the Coolify host cached the last
-    # time it saw `:latest`, so the deploy webhook restarts the container
-    # on the PREVIOUS build while Coolify reports the deploy as finished.
-    # The same shape kept sprite-tools and hatchkit docs on a May 2026
-    # build through their 2026-09-28 redeploys.
+    image: ghcr.io/trebeljahr/ricos-labs@sha256:64518dcff5d54e0f9e195e40b61ec8fdf49953d649f56c3d94539ba7442a7240
     pull_policy: always
     environment:
       NEXT_PUBLIC_OPENPANEL_CLIENT_ID: ${OPENPANEL_CLIENT_ID:-}

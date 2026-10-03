@@ -78,6 +78,7 @@ ENV PORT=6457
 ENV HOSTNAME=0.0.0.0
 ENV SHUTDOWN_DRAIN_SECONDS=20
 ENV HEALTH_CHECK_PATH=/
+STOPSIGNAL SIGTERM
 
 # Next.js standalone bundle is the minimal node server + deps.
 COPY --from=build /app/packages/client/.next/standalone ./
