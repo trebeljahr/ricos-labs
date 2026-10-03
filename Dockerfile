@@ -3,7 +3,7 @@
 # Production image for ricos-labs. Next.js (App Router) builds with
 # output: "standalone", so the runner stage ships a tiny Node server
 # instead of nginx. Built by .github/workflows/deploy.yml, pushed to
-# GHCR, pulled by Coolify via docker-compose.yml.
+# GHCR, then pulled by Coolify as a Docker Image application.
 #
 # .env.production is committed dotenvx-encrypted. The build stage
 # decrypts it via the dotenvx_private_key BuildKit secret (passed by
@@ -39,6 +39,13 @@ FROM deps AS build
 COPY tsconfig.base.json ./
 COPY packages/shared packages/shared
 COPY packages/client packages/client
+COPY scripts/write-version.mjs scripts/write-version.mjs
+
+ARG DEPLOYMENT_ID
+ENV NEXT_DEPLOYMENT_ID=${DEPLOYMENT_ID}
+ENV NEXT_PUBLIC_BUILD_COMMIT=${DEPLOYMENT_ID}
+RUN node scripts/write-version.mjs packages/client/public
+
 
 RUN pnpm --filter @starter/shared run build
 
@@ -57,19 +64,32 @@ RUN --mount=type=secret,id=dotenvx_private_key,env=DOTENV_PRIVATE_KEY_PRODUCTION
 FROM node:${NODE_VERSION}-bookworm-slim AS runner
 WORKDIR /app
 
+# curl for Coolify's health check. Coolify probes the container by
+# running `curl … || wget … || exit 1` INSIDE it, in place of any
+# HEALTHCHECK here, and bookworm-slim ships neither. Without one the
+# probe can never pass and every deploy is rolled back. With it, a
+# replacement can wait for this container to become healthy.
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends curl \
+  && rm -rf /var/lib/apt/lists/*
+
 ENV NODE_ENV=production
 ENV PORT=6457
 ENV HOSTNAME=0.0.0.0
+ENV SHUTDOWN_DRAIN_SECONDS=20
+ENV HEALTH_CHECK_PATH=/
+STOPSIGNAL SIGTERM
 
 # Next.js standalone bundle is the minimal node server + deps.
 COPY --from=build /app/packages/client/.next/standalone ./
 COPY --from=build /app/packages/client/.next/static ./packages/client/.next/static
 COPY --from=build /app/packages/client/public ./packages/client/public
+COPY drain.cjs ./drain.cjs
 
 USER node
 EXPOSE 6457
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=5 \
+HEALTHCHECK --interval=2s --timeout=5s --start-period=15s --retries=5 \
   CMD node -e "fetch('http://127.0.0.1:'+(process.env.PORT||'6457')).then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
 
-CMD ["node", "packages/client/server.js"]
+CMD ["node", "--require", "/app/drain.cjs", "packages/client/server.js"]

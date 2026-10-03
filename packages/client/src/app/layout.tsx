@@ -37,6 +37,9 @@ const plausibleScriptUrl =
 const shouldLoadPlausible = process.env.NODE_ENV === "production";
 
 export const metadata: Metadata = {
+  other: process.env.NEXT_PUBLIC_BUILD_COMMIT
+    ? { "build-commit": process.env.NEXT_PUBLIC_BUILD_COMMIT }
+    : {},
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.seo.title,

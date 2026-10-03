@@ -65,3 +65,6 @@ docs-site/build/
 # Misc
 *.log
 npm-debug.log*
+
+# Generated immutable image identity.
+/packages/client/public/version.json

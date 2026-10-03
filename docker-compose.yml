@@ -3,12 +3,12 @@
 # Traefik handles external routing.
 #
 # The image is built and pushed by .github/workflows/deploy.yml on
-# every push to main and pulled here by tag. Override CLIENT_IMAGE in
-# Coolify's UI if you need to pin a specific commit.
+# every push to main. This file retains the exact pre-migration image
+# solely for legacy rollback; future Image-app releases do not alter it.
 
 services:
   client:
-    image: ${CLIENT_IMAGE:-ghcr.io/trebeljahr/ricos-labs:latest}
+    image: ghcr.io/trebeljahr/ricos-labs@sha256:64518dcff5d54e0f9e195e40b61ec8fdf49953d649f56c3d94539ba7442a7240
     pull_policy: always
     environment:
       NEXT_PUBLIC_OPENPANEL_CLIENT_ID: ${OPENPANEL_CLIENT_ID:-}
