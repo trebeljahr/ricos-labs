@@ -35,3 +35,13 @@ Validation: `node --test scripts/release.test.mjs`; `node scripts/verify-release
 <full-sha>`. The latter requires 16 consecutive matching version and HTML samples,
 separated by 2 seconds. A successful webhook response alone never proves a
 release finished.
+
+## Current runtime
+
+Production runs as the Coolify Docker Image app `bffigwu5v24tdslu1mou8txs`.
+The stopped Compose app `ica6zmwn4k122ovusx7j7l68`
+(`ricos-labs-web-legacy-compose`) is the rollback resource. Its Git source is
+pinned to `78f94115836ca0d1915e3c073e2a3f50278402db`, whose `docker-compose.yml`
+holds the pre-migration digest. Its auto-deploy is off. Release by setting the
+Image app's tag to a full-SHA build's digest and deploying that app; never
+redeploy the legacy app while the Image app serves.
