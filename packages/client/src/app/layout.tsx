@@ -133,17 +133,6 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        {process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID && (
-          <script
-            defer
-            async
-            src="https://openpanel.dev/op.js"
-            data-client-id={process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID}
-            data-track-screenviews="true"
-          />
-        )}
-      </head>
       <body className="min-h-screen bg-background text-foreground font-sans">
         {shouldLoadPlausible ? (
           <Script id="plausible-loader" strategy="afterInteractive">

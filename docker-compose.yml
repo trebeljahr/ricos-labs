@@ -11,7 +11,6 @@ services:
     image: ghcr.io/trebeljahr/ricos-labs@sha256:64518dcff5d54e0f9e195e40b61ec8fdf49953d649f56c3d94539ba7442a7240
     pull_policy: always
     environment:
-      NEXT_PUBLIC_OPENPANEL_CLIENT_ID: ${OPENPANEL_CLIENT_ID:-}
       NEXT_PUBLIC_SENTRY_DSN: ${CLIENT_SENTRY_DSN:-}
       PORT: ${PORT:-6457}
     restart: unless-stopped

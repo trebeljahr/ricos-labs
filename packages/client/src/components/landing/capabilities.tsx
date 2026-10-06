@@ -17,7 +17,7 @@ const capabilities = [
   },
   {
     title: "Full-stack TypeScript",
-    body: "Next.js, Express, tRPC, MongoDB, Redis, S3, better-auth, Stripe, Sentry, OpenPanel. Encrypted secrets in git. Boring infra, well plumbed.",
+    body: "Next.js, Express, tRPC, MongoDB, Redis, S3, better-auth, Stripe, Sentry, Plausible. Encrypted secrets in git. Boring infra, well plumbed.",
   },
   {
     title: "Tooling & content",
