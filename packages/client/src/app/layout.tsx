@@ -32,8 +32,10 @@ const ogImage = {
   alt: siteConfig.seo.image.alt,
 };
 const plausibleDomain = "ricoslabs.com";
-const plausibleScriptUrl =
-  "https://plausible.trebeljahr.com/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js";
+// First-party proxy of plausible.trebeljahr.com, which content blockers block.
+// next.config.mjs rewrites the script; src/app/kestrel/k/route.ts forwards events.
+const plausibleScriptUrl = "/kestrel/k.js";
+const plausibleApiUrl = "/kestrel/k";
 const shouldLoadPlausible = process.env.NODE_ENV === "production";
 
 export const metadata: Metadata = {
@@ -146,6 +148,7 @@ export default function RootLayout({
                 var script = document.createElement("script");
                 script.defer = true;
                 script.dataset.domain = domain;
+                script.dataset.api = ${JSON.stringify(plausibleApiUrl)};
                 script.src = ${JSON.stringify(plausibleScriptUrl)};
                 document.head.appendChild(script);
               })();
