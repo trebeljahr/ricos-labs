@@ -21,6 +21,13 @@ the built-in GitHub package token and never receives a Coolify API token.
 `hatchkit secrets isolate <checkout> --app bffigwu5v24tdslu1mou8txs` writes the
 bundle from an operator terminal.
 
+## Current state
+
+`RICOS_LABS_ROLLOUT_MODE` is `automatic`. The manual release in run
+`38178665186` (2026-10-11 UTC) created the journal. To pause releases, set the
+variable to `manual`: pushes still build candidates, and nothing deploys until
+a `deploy` dispatch.
+
 ## Image identity and runtime
 
 The Docker build requires `DEPLOYMENT_ID` to be the full source commit. It embeds
