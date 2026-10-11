@@ -43,14 +43,13 @@ export const featuredProjects: Project[] = [
 
 export const otherProjects: Project[] = [
   {
-    title: "Extinction Protocol",
-    url: "https://github.com/trebeljahr/extinction-protocol",
+    title: "Mesozoic Protocol",
+    url: "https://mesozoicprotocol.com",
     tagline: "3D roguelite tower defense for web, desktop, and mobile",
     description:
       "A 3D tower defense game with roguelite progression. Built with React Three Fiber, ships to browser, desktop (Tauri), and mobile (Capacitor).",
     image: "/images/extinction-protocol.png",
     tech: ["React Three Fiber", "Zustand", "Vite", "Tauri", "Capacitor"],
-    source: "https://github.com/trebeljahr/extinction-protocol",
   },
   {
     title: "Hatchkit",
