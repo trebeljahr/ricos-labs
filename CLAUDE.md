@@ -13,7 +13,10 @@ description here, not in both files.
 - **Styling:** Tailwind CSS 3 with CSS variables, `next-themes` for the light and dark theme, `lucide-react` icons
 - **3D:** `three`, `@react-three/fiber`, `@react-three/drei`, `@react-three/postprocessing`
 - **Analytics:** Plausible, loaded only in production and proxied through the site's own `/kestrel` paths
-- **Monorepo:** pnpm workspace with `packages/client` (`@starter/client`) and `packages/shared` (`@starter/shared`)
+- **Workspace:** pnpm workspace with one package, `packages/client`. Its name,
+  `@starter/client`, comes from the starter template. The root scripts, the
+  `Dockerfile`, `lighthouserc.json`, the Lighthouse workflow and
+  `.claude/launch.json` select the package by that name.
 - **Toolchain:** Node 22 or newer, pnpm 11
 
 ## Commands
@@ -21,26 +24,26 @@ description here, not in both files.
 ```bash
 pnpm install        # install dependencies
 pnpm dev            # Next dev server on port 3947
-pnpm build          # build packages/shared with tsc, then the client with next build
-pnpm typecheck      # tsc --noEmit in both packages
-node --test scripts/release.test.mjs scripts/rolling-release.test.mjs
+pnpm build          # next build of the client
+pnpm typecheck      # tsc --noEmit in the client
+pnpm test           # release and rollout contract tests
 ```
 
-The last command runs the release and rollout contract tests. The drain test
-in `release.test.mjs` depends on timing and can fail on a heavily loaded
-machine. Run it again before you treat a failure as a regression.
+`pnpm test` runs `node --test scripts/release.test.mjs scripts/rolling-release.test.mjs`.
+The drain test in `release.test.mjs` depends on timing and can fail on a
+heavily loaded machine. Run it again before you treat a failure as a
+regression.
 
-Commands that exist and need care:
+There is no lint step. The repository has no ESLint dependency and no ESLint
+config.
 
-- `pnpm test` runs `vitest run` in the client. The client has no test files,
-  so the command exits with code 1 ("No test files found").
+A command that needs care:
+
 - `pnpm screenshots` opens each project's public URL in Playwright Chromium
   and overwrites `packages/client/public/images/*.png`. Limit it with
   `node scripts/capture-project-screenshots.mjs --only=tiao,raptor`. It needs
   the Playwright browser (`pnpm exec playwright install chromium`). Read the
   image diff before you commit.
-- The client's `lint` script calls `next lint`. The repository has no ESLint
-  dependency and no ESLint config, so there is no lint step.
 
 ### Dev server and the local-dev URL
 
@@ -55,6 +58,9 @@ preview or a test server with the plugin off and on another port:
 HATCHKIT_LOCAL_DEV=0 pnpm --filter @starter/client exec next dev --port <free port>
 ```
 
+The `client` entry in `.claude/launch.json` starts the preview server this
+way on port 57342.
+
 ## Every Push to `main` Is a Production Release
 
 A push to `main` builds an image and deploys it to https://ricoslabs.com.
@@ -68,7 +74,7 @@ hook and checks that the public site serves the commit. The contract, the gate
 variable `RICOS_LABS_ROLLOUT_MODE` and the recovery steps are in
 `scripts/ROLLING_RELEASE.md`. Read it before you change anything it names.
 
-- Run the contract tests before a push that changes `scripts/`, `Dockerfile`,
+- Run the contract tests (`pnpm test`) before a push that changes `scripts/`, `Dockerfile`,
   `drain.cjs` or `.github/workflows/deploy.yml`. The build job runs them too.
 - Never commit a file at `.hatchkit/deploy-webhook`. The signed deploy hook
   names that path as the changed file.
@@ -112,8 +118,6 @@ packages/client/
                          use-reduced-motion), utils.ts
     styles/globals.css — Tailwind layers and the CSS variables of both themes
 
-packages/shared/src/   — types.ts, protocol.ts, schemas.ts (see "Unused Starter Code")
-
 scripts/
   ROLLING_RELEASE.md             — release contract
   rolling-release.mjs            — rollout controller entry, logic in lib/rolling-release.mjs
@@ -150,28 +154,14 @@ Where site content lives:
 - The site code reads two build variables: `NEXT_DEPLOYMENT_ID` and
   `NEXT_PUBLIC_BUILD_COMMIT`. The Dockerfile sets both from `DEPLOYMENT_ID`.
   Both are unset in local development.
+- `packages/client/.env.example` lists the variables that the code reads.
+  Nothing loads the file, and local development needs no variable.
 
 Add an encrypted value (this needs only the public key in the file):
 
 ```bash
 pnpm dlx @dotenvx/dotenvx set KEY value -f packages/client/.env.production
 ```
-
-## Unused Starter Code
-
-This repository was created from a starter template for web apps with a
-backend. These parts of the template are still present, and nothing in the
-site uses them. Do not build on them without a decision from the operator.
-
-- `packages/shared`: example types, WebSocket message types and Zod schemas.
-  No client file imports the package. `pnpm build` and the Docker build still
-  compile it.
-- `scripts/dev.mjs` and `scripts/wait-for-port.mjs`: they start a server
-  package and a docs site that do not exist. No package script calls them.
-- `docker-compose.dev.yml` and the `dev:infra`, `dev:infra:stop` and
-  `dev:infra:reset` scripts: a local MinIO bucket that the site does not read.
-- `@sentry/nextjs` is installed and is not initialized anywhere.
-- `packages/client/.env.example` lists API and WebSocket URLs that no code reads.
 
 ## Code Style
 
@@ -185,11 +175,13 @@ site uses them. Do not build on them without a decision from the operator.
 ## Testing Conventions
 
 - **Release scripts:** `node:test` with `node:assert/strict`. Files are
-  `scripts/*.test.mjs`.
+  `scripts/*.test.mjs`. `pnpm test` runs them.
 - **Client:** no tests yet. Vitest, Testing Library and jsdom are installed,
-  and there is no Vitest config. The first client test needs a config with the
-  jsdom environment and the `@/` alias. Put test files next to the source as
-  `*.test.tsx`.
+  and there is no Vitest config. The client's `test` script (`vitest run`)
+  exits with code 1 until a test file exists, and the root `pnpm test` does
+  not call it. The first client test needs a config with the jsdom environment
+  and the `@/` alias, and a root `test` script that also runs the client's
+  script. Put test files next to the source as `*.test.tsx`.
 
 ## Commit Messages
 
