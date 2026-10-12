@@ -9,9 +9,7 @@
   "scripts": {
     "dev": "pnpm --filter @starter/client dev",
     "build": "pnpm --filter @starter/client run build",
-    "build:client": "pnpm --filter @starter/client run build",
-    "test": "pnpm run test:client",
-    "test:client": "pnpm --filter @starter/client run test",
+    "test": "node --test scripts/release.test.mjs scripts/rolling-release.test.mjs",
     "typecheck": "pnpm -r run typecheck",
     "screenshots": "node scripts/capture-project-screenshots.mjs"
   },
