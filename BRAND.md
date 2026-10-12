@@ -9,7 +9,7 @@ direct rather than corporate.
 - Primary lockup: `packages/client/public/brand/ricos-labs-lockup.svg`
 - Wordmark: `packages/client/public/brand/ricos-labs-wordmark.svg`
 - App icon / favicon mark: `packages/client/public/brand/ricos-labs-mark.svg`
-- App Router favicon source: `packages/client/src/app/icon.svg`
+- App Router favicon: `packages/client/src/app/icon.png`
 - Reusable React mark: `packages/client/src/components/brand/brand-mark.tsx`
 
 Use the app icon for favicons, avatars, social previews, and compact UI marks.
@@ -55,7 +55,7 @@ The current site uses the identity in:
 
 - `packages/client/src/components/landing/nav.tsx`
 - `packages/client/src/components/landing/footer.tsx`
-- `packages/client/src/app/icon.svg`
+- `packages/client/src/app/icon.png`
 - `packages/client/src/app/manifest.ts`
 - `packages/client/src/app/opengraph-image.tsx`
 - `packages/client/src/lib/brand.ts`
