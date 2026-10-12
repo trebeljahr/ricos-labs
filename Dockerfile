@@ -28,9 +28,9 @@ COPY pnpm-workspace.yaml pnpm-lock.yaml package.json .npmrc ./
 COPY packages/client/package.json packages/client/
 
 # --ignore-scripts skips postinstall hooks (sharp ships prebuilt
-# binaries for the linux/amd64 runtime that Coolify uses; @sentry/cli
-# and esbuild are only needed at build time and pnpm fetches the
-# right platform binary regardless).
+# binaries for the linux/amd64 runtime that Coolify uses; esbuild is
+# only needed at build time and pnpm fetches the right platform
+# binary regardless).
 RUN pnpm install --frozen-lockfile --ignore-scripts
 
 # ── Stage 2: build ─────────────────────────────────────────────────
