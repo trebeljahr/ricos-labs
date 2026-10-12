@@ -3,8 +3,11 @@
   "configurations": [
     {
       "name": "client",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@starter/client", "exec", "next", "dev", "--port", "57342"],
+      "runtimeExecutable": "env",
+      "runtimeArgs": [
+        "HATCHKIT_LOCAL_DEV=0",
+        "pnpm", "--filter", "@starter/client", "exec", "next", "dev", "--port", "57342"
+      ],
       "port": 57342
     }
   ]
