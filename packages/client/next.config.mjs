@@ -19,7 +19,6 @@ const nextConfig = {
       },
     ];
   },
-  transpilePackages: ["@starter/shared"],
   poweredByHeader: false,
   reactStrictMode: true,
 };

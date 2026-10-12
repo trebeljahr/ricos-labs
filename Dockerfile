@@ -25,7 +25,6 @@ WORKDIR /app
 # Copy lockfile + workspace manifest + per-package manifests + .npmrc
 # first so the install layer caches when only source changes.
 COPY pnpm-workspace.yaml pnpm-lock.yaml package.json .npmrc ./
-COPY packages/shared/package.json packages/shared/
 COPY packages/client/package.json packages/client/
 
 # --ignore-scripts skips postinstall hooks (sharp ships prebuilt
@@ -36,8 +35,6 @@ RUN pnpm install --frozen-lockfile --ignore-scripts
 
 # ── Stage 2: build ─────────────────────────────────────────────────
 FROM deps AS build
-COPY tsconfig.base.json ./
-COPY packages/shared packages/shared
 COPY packages/client packages/client
 COPY scripts/write-version.mjs scripts/write-version.mjs
 
@@ -45,9 +42,6 @@ ARG DEPLOYMENT_ID
 ENV NEXT_DEPLOYMENT_ID=${DEPLOYMENT_ID}
 ENV NEXT_PUBLIC_BUILD_COMMIT=${DEPLOYMENT_ID}
 RUN node scripts/write-version.mjs packages/client/public
-
-
-RUN pnpm --filter @starter/shared run build
 
 # Decrypt .env.production in memory and run `next build` with the
 # plain NEXT_PUBLIC_* values exported. dotenvx is a tiny wrapper that
