@@ -6,20 +6,6 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@starter/client", "exec", "next", "dev", "--port", "57342"],
       "port": 57342
-    },
-    {
-      "name": "docs",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "docs-site", "run", "start", "--", "--port", "4100"],
-      "port": 4100,
-      "autoPort": true
-    },
-    {
-      "name": "server",
-      "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@starter/server", "run", "dev"],
-      "port": 5100,
-      "autoPort": true
     }
   ]
 }
