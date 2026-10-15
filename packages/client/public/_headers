@@ -1,0 +1,21 @@
+# Response headers for the Cloudflare Worker ricos-labs-client.
+# Format: https://developers.cloudflare.com/workers/static-assets/headers/
+#
+# No long cache rule for /_next/static/*: a rule here also applies to 404
+# responses, so a browser would keep a missing chunk for a year. The default
+# (max-age=0, must-revalidate, with an ETag) costs one free revalidation.
+
+# The release check reads these two; they must never come from a cache.
+/version.json
+  Cache-Control: no-store, max-age=0
+
+/release-assets.json
+  Cache-Control: no-store, max-age=0
+
+# The export writes the Open Graph images without a file extension, so the
+# asset server cannot infer their type. Next served them as image/png.
+/opengraph-image
+  Content-Type: image/png
+
+/twitter-image
+  Content-Type: image/png

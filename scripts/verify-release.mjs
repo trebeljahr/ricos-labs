@@ -5,11 +5,12 @@ const ORIGIN = "https://ricoslabs.com";
 const ALIASES = [];
 const pause = (ms) => new Promise((done) => setTimeout(done, ms));
 
-// This proves which build public HTTP serves. The deployment operator must
-// also inspect Coolify's exact deployment and running container image digest.
-// After the hook the old build keeps answering until the new image is pulled,
-// passes its start period and the old container has drained. The wait is nine
-// minutes, bounded by time so slow requests cannot extend it.
+// This proves which build public HTTP serves: /version.json and the
+// build-commit meta tag both name the commit. A Worker version usually
+// answers everywhere within seconds of `wrangler versions deploy`; the wait is
+// nine minutes, bounded by time so slow requests cannot extend it, and needs
+// 16 matching samples in a row so an edge that still serves the old version
+// resets the count.
 export async function verifyRelease(
   commit,
   {

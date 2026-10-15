@@ -9,12 +9,14 @@
   "scripts": {
     "dev": "pnpm --filter @starter/client dev",
     "build": "pnpm --filter @starter/client run build",
-    "test": "node --test scripts/release.test.mjs scripts/rolling-release.test.mjs",
+    "preview": "wrangler dev --config packages/client/wrangler.jsonc",
+    "test": "node --test scripts/release.test.mjs",
     "typecheck": "pnpm -r run typecheck",
     "screenshots": "node scripts/capture-project-screenshots.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "4.145.0"
   }
 }

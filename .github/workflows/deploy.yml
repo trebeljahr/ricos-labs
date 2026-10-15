@@ -1,8 +1,10 @@
-# Every push builds a full-SHA-tagged candidate. A build never moves a live tag.
-# The deploy job promotes one reviewed digest to `latest`, which the Coolify
-# Image app pulls, then queues that app with its signed hook and verifies it.
-# RICOS_LABS_ROLLOUT_MODE: unset/off, manual, or automatic.
-# Contract: scripts/ROLLING_RELEASE.md.
+# Every push to main builds the static export and uploads it as a new version
+# of the Cloudflare Worker ricos-labs-client. An upload is not live. The deploy
+# job then activates that version and checks that the public site serves the
+# commit.
+# RICOS_LABS_ROLLOUT_MODE: `automatic` activates on push; any other value only
+# uploads, and a person activates with the `deploy` operation.
+# Contract, routes and rollback: docs/RELEASE.md.
 name: Build & Release
 
 on:
@@ -11,132 +13,91 @@ on:
   workflow_dispatch:
     inputs:
       operation:
-        description: Build, deploy a reviewed image, or verify a release
+        description: Build and upload, activate the uploaded version of a commit, or verify a release
         type: choice
         options: [build, deploy, verify]
         default: build
       target_sha:
-        description: Full commit SHA required for deploy or verify
+        description: Full commit SHA, required for deploy and verify
         type: string
         required: false
-      image_digest:
-        description: Exact sha256 image digest from the build artifact (deploy only)
-        type: string
-        required: false
-      expected_current_digest:
-        description: Reviewed current latest digest (deploy only)
+      version_id:
+        description: Worker version id to activate (deploy only; needed for a commit older than the newest 10 uploads)
         type: string
         required: false
 
 permissions:
   contents: read
 
-# One group for every ref: the deploy job is the only writer of `latest`.
+# One group for every ref: the deploy job is the only writer of the active version.
 concurrency:
-  group: image-release-main
+  group: worker-release-main
   cancel-in-progress: false
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  WRANGLER_SEND_METRICS: "false"
+  WORKER_CONFIG: packages/client/wrangler.jsonc
 
 jobs:
   build:
-    outputs:
-      digest: ${{ steps.image.outputs.digest }}
-    if: github.repository == 'trebeljahr/ricos-labs' && github.ref == 'refs/heads/main' && inputs.operation != 'verify' && inputs.operation != 'deploy'
+    if: >-
+      github.repository == 'trebeljahr/ricos-labs' && github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || inputs.operation == 'build')
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
+    timeout-minutes: 20
+    outputs:
+      version_id: ${{ steps.upload.outputs.version_id }}
     steps:
       - uses: actions/checkout@v5
+
+      # The version comes from packageManager in package.json.
+      - uses: pnpm/action-setup@v4
 
       - uses: actions/setup-node@v6
         with:
           node-version: "24"
+          cache: pnpm
 
-      - name: Release, drain and rollout contract tests
-        run: node --test scripts/release.test.mjs scripts/rolling-release.test.mjs
+      - run: pnpm install --frozen-lockfile
 
-      - uses: docker/setup-buildx-action@v3
+      - name: Tests and typecheck
+        run: pnpm test && pnpm typecheck
 
-      - uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/trebeljahr/ricos-labs
-          flavor: latest=false
-          tags: |
-            type=raw,value=${{ github.sha }}
-
-      - id: image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          platforms: linux/amd64
-          # Next's skew protection id, see the Dockerfile.
-          build-args: |
-            DEPLOYMENT_ID=${{ github.sha }}
-          # BuildKit secret for decrypting .env.production at build
-          # time. Mounted as tmpfs inside the Dockerfile's RUN step,
-          # never written to a layer or `docker history`. The Dockerfile
-          # exposes it as the DOTENV_PRIVATE_KEY_PRODUCTION env var for
-          # `dotenvx run -- pnpm build`, which decrypts in memory and
-          # bakes NEXT_PUBLIC_* / VITE_* values into the bundle.
-          secrets: |
-            dotenvx_private_key=${{ secrets.DOTENV_PRIVATE_KEY_PRODUCTION }}
-
-      - name: Record immutable release identity
+      - name: Build the static export
         env:
-          IMAGE: ghcr.io/trebeljahr/ricos-labs
-          IMAGE_DIGEST: ${{ steps.image.outputs.digest }}
+          NEXT_PUBLIC_BUILD_COMMIT: ${{ github.sha }}
         run: |
-          node --input-type=module <<'NODE'
-          import { writeFileSync } from 'node:fs';
-          const { GITHUB_SHA: commit, IMAGE: image, IMAGE_DIGEST: digest } = process.env;
-          if (!/^[a-f0-9]{40}$/.test(commit) || !/^sha256:[a-f0-9]{64}$/.test(digest)) {
-            throw new Error('Build did not provide a full commit and image digest.');
-          }
-          writeFileSync('release.json', JSON.stringify({ commit, image, digest, reference: `${image}@${digest}` }, null, 2) + '\n');
-          NODE
+          pnpm build
+          node scripts/write-version.mjs packages/client/out
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: release-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          path: release.json
-          if-no-files-found: error
+      # A Worker version serves only its own files. Tabs opened before this
+      # release still ask for the hashed chunks of the releases before it.
+      - name: Carry the hashed files of the two releases before this one
+        run: node scripts/carry-static.mjs --site https://ricoslabs.com --out packages/client/out --release "$GITHUB_SHA"
 
-  # This only observes public HTTP responses. It never queues a deployment
-  # or changes a registry tag.
-  verify:
-    if: github.repository == 'trebeljahr/ricos-labs' && github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' && inputs.operation == 'verify'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-      - name: Verify the serving commit
+      - name: Upload a version (not live yet)
+        id: upload
         env:
-          EXPECTED_SHA: ${{ inputs.target_sha }}
-        run: node scripts/verify-release.mjs "$EXPECTED_SHA"
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_OUTPUT_FILE_PATH: ${{ runner.temp }}/wrangler-upload.ndjson
+        run: |
+          pnpm exec wrangler versions upload --config "$WORKER_CONFIG" --tag "$GITHUB_SHA" --message "Commit $GITHUB_SHA"
+          version_id=$(node -e '
+            const lines = require("fs").readFileSync(process.argv[1], "utf8").split("\n").filter(Boolean);
+            const upload = lines.map((line) => JSON.parse(line)).find((entry) => entry.type === "version-upload");
+            if (!/^[0-9a-f-]{36}$/.test(upload?.version_id ?? "")) process.exit(1);
+            console.log(upload.version_id);
+          ' "$WRANGLER_OUTPUT_FILE_PATH")
+          echo "version_id=$version_id" >> "$GITHUB_OUTPUT"
+          echo "Uploaded $GITHUB_SHA as Worker version $version_id (not live)." >> "$GITHUB_STEP_SUMMARY"
 
-  # On a push this runs only in automatic mode, after a successful build of
-  # that commit. A dispatch names the commit, its digest and the digest that
-  # `latest` holds now; the controller refuses when any of them disagrees.
+  # On a push this runs only in automatic mode, after a successful upload of
+  # that commit. A dispatch names a commit, and optionally its version id;
+  # without one, the newest version tagged with the commit among the newest 10
+  # uploads is used. That is also the rollback. Cloudflare activates only the
+  # newest 100 uploads.
   deploy:
     needs: build
     if: >-
@@ -145,31 +106,75 @@ jobs:
       ((github.event_name == 'push' && vars.RICOS_LABS_ROLLOUT_MODE == 'automatic' && needs.build.result == 'success') ||
        (github.event_name == 'workflow_dispatch' && inputs.operation == 'deploy'))
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    permissions:
-      contents: read
-      packages: write
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      TARGET_SHA: ${{ github.event_name == 'push' && github.sha || inputs.target_sha }}
+      VERSION_ID: ${{ github.event_name == 'push' && needs.build.outputs.version_id || inputs.version_id }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Find the version uploaded for the commit
+        id: version
+        run: |
+          if [[ ! "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::target_sha must be a full lowercase commit SHA"; exit 1
+          fi
+          if [ -n "$VERSION_ID" ]; then
+            if [[ ! "$VERSION_ID" =~ ^[0-9a-f-]{36}$ ]]; then
+              echo "::error::version_id must be a Worker version UUID"; exit 1
+            fi
+          else
+            # Wrangler lists only the newest 10 versions.
+            pnpm exec wrangler versions list --config "$WORKER_CONFIG" --json > "$RUNNER_TEMP/versions.json" \
+              || { echo "::error::wrangler versions list failed"; exit 1; }
+            VERSION_ID=$(node -e '
+              const versions = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+              const tagged = versions
+                .filter((v) => v.annotations?.["workers/tag"] === process.argv[2])
+                .sort((a, b) => String(b.metadata?.created_on).localeCompare(String(a.metadata?.created_on)));
+              if (tagged.length) console.log(tagged[0].id);
+            ' "$RUNNER_TEMP/versions.json" "$TARGET_SHA")
+            if [ -z "$VERSION_ID" ]; then
+              echo "::error::None of the newest 10 versions is tagged $TARGET_SHA. Pass version_id (the build summary names it), or run the build operation on that commit."
+              exit 1
+            fi
+          fi
+          echo "id=$VERSION_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Activate the version
+        env:
+          ID: ${{ steps.version.outputs.id }}
+        run: |
+          pnpm exec wrangler versions deploy "$ID@100%" --config "$WORKER_CONFIG" --yes --message "Release $TARGET_SHA"
+          echo "Activated Worker version $ID for $TARGET_SHA." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify the serving commit
+        run: node scripts/verify-release.mjs "$TARGET_SHA"
+
+  # This only observes public HTTP responses.
+  verify:
+    if: >-
+      github.repository == 'trebeljahr/ricos-labs' && github.ref == 'refs/heads/main' &&
+      github.event_name == 'workflow_dispatch' && inputs.operation == 'verify'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
         with:
-          node-version: '24'
-      - name: Promote, queue this app, and verify the release
+          node-version: "24"
+      - name: Verify the serving commit
         env:
-          ROLLOUT_MODE: ${{ vars.RICOS_LABS_ROLLOUT_MODE }}
-          TARGET_SHA: ${{ github.event_name == 'push' && github.sha || inputs.target_sha }}
-          TARGET_DIGEST: ${{ github.event_name == 'push' && needs.build.outputs.digest || inputs.image_digest }}
-          EXPECTED_CURRENT_DIGEST: ${{ inputs.expected_current_digest }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COOLIFY_BASE_URL: ${{ secrets.COOLIFY_BASE_URL }}
-          COOLIFY_RESOURCE_UUID: ${{ secrets.COOLIFY_RESOURCE_UUID }}
-          COOLIFY_DEPLOY_SECRET: ${{ secrets.COOLIFY_DEPLOY_SECRET }}
-          COOLIFY_DEPLOY_REPOSITORY: ${{ secrets.COOLIFY_DEPLOY_REPOSITORY }}
-          COOLIFY_DEPLOY_BRANCH: ${{ secrets.COOLIFY_DEPLOY_BRANCH }}
-        run: node scripts/rolling-release.mjs
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: rollout-${{ github.run_id }}-${{ github.run_attempt }}
-          path: rollout.json
-          if-no-files-found: warn
+          EXPECTED_SHA: ${{ inputs.target_sha }}
+        run: node scripts/verify-release.mjs "$EXPECTED_SHA"

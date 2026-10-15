@@ -3,12 +3,14 @@ packages:
 onlyBuiltDependencies:
   - esbuild
   - sharp
+  - workerd
 strictDepBuilds: false
 verifyDepsBeforeRun: false
 autoInstallPeers: true
 allowBuilds:
   esbuild: true
   sharp: true
+  workerd: true
 
 overrides:
   "postcss@8": "8.5.28"

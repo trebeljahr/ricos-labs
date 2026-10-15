@@ -9,6 +9,15 @@
         "pnpm", "--filter", "@starter/client", "exec", "next", "dev", "--port", "57342"
       ],
       "port": 57342
+    },
+    {
+      "name": "worker",
+      "runtimeExecutable": "env",
+      "runtimeArgs": [
+        "WRANGLER_SEND_METRICS=false",
+        "pnpm", "exec", "wrangler", "dev", "--config", "packages/client/wrangler.jsonc", "--port", "51873"
+      ],
+      "port": 51873
     }
   ]
 }

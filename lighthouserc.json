@@ -1,8 +1,8 @@
 {
   "ci": {
     "collect": {
-      "startServerCommand": "pnpm --filter @starter/client run start",
-      "startServerReadyPattern": "Ready in|started server",
+      "startServerCommand": "pnpm exec wrangler dev --config packages/client/wrangler.jsonc --port 3947",
+      "startServerReadyPattern": "Ready on",
       "startServerReadyTimeout": 60000,
       "url": [
         "http://localhost:3947/",

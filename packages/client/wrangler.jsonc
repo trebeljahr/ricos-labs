@@ -1,0 +1,20 @@
+// The site: an assets-only Worker. No `main`, so no request runs Worker code
+// and none counts toward the Workers Free daily request limit. Do not add
+// `main`, `run_worker_first` or `cache`: each one makes requests billable.
+//
+// The zone route ricoslabs.com/* attaches this Worker. It was made with the
+// Cloudflare API, not here: with no `routes` key a deploy leaves the routes
+// alone, and the per-Worker CI token cannot change them. The routes and the
+// rollback are in docs/RELEASE.md.
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "ricos-labs-client",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./out",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": false,
+  "preview_urls": false
+}

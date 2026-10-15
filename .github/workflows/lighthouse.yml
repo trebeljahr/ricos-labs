@@ -27,7 +27,9 @@ jobs:
       - name: Build production bundle
         run: pnpm --filter @starter/client run build
 
+      # Serves the export with the same asset rules as production (wrangler dev).
       - name: Run Lighthouse CI
         run: pnpm dlx @lhci/cli@0.14.x autorun --config=./lighthouserc.json
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          WRANGLER_SEND_METRICS: "false"

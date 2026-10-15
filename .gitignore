@@ -41,5 +41,6 @@ coverage/
 *.log
 npm-debug.log*
 
-# Generated immutable image identity.
-/packages/client/public/version.json
+# Static export (with its version.json) and Wrangler state
+/packages/client/out/
+.wrangler/

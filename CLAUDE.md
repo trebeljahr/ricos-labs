@@ -1,22 +1,27 @@
 # ricos-labs
 
 The Ricos Labs company website, https://ricoslabs.com. It is a Next.js site
-with a landing page and an imprint page. This repository has no backend
-service, no database and no authentication.
+with a landing page and an imprint page, exported as static files and served
+by Cloudflare Workers. This repository has no backend service, no database
+and no authentication.
 
 `AGENTS.md` points other coding agents to this file. Keep the repository
 description here, not in both files.
 
 ## Tech Stack
 
-- **Site:** Next.js 15 (App Router), React 19, TypeScript, built with `output: "standalone"`
+- **Site:** Next.js 15 (App Router), React 19, TypeScript, built with `output: "export"`
+- **Hosting:** the assets-only Cloudflare Worker `ricos-labs-client`, attached
+  by the route `ricoslabs.com/*`. See `docs/RELEASE.md`.
 - **Styling:** Tailwind CSS 3 with CSS variables, `next-themes` for the light and dark theme, `lucide-react` icons
 - **3D:** `three`, `@react-three/fiber`, `@react-three/drei`, `@react-three/postprocessing`
-- **Analytics:** Plausible, loaded only in production and proxied through the site's own `/kestrel` paths
+- **Analytics:** Plausible, loaded only in production, straight from
+  plausible.trebeljahr.com. No first-party proxy: a visitor who blocks it is
+  not counted, on purpose.
 - **Workspace:** pnpm workspace with one package, `packages/client`. Its name,
   `@starter/client`, comes from the starter template. The root scripts, the
-  `Dockerfile`, `lighthouserc.json`, the Lighthouse workflow and
-  `.claude/launch.json` select the package by that name.
+  Lighthouse workflow and `.claude/launch.json` select the package by that
+  name.
 - **Toolchain:** Node 22 or newer, pnpm 11
 
 ## Commands
@@ -24,15 +29,16 @@ description here, not in both files.
 ```bash
 pnpm install        # install dependencies
 pnpm dev            # Next dev server on port 3947
-pnpm build          # next build of the client
+pnpm build          # static export to packages/client/out
+pnpm preview        # serve packages/client/out with wrangler dev (port 8787)
 pnpm typecheck      # tsc --noEmit in the client
-pnpm test           # release and rollout contract tests
+pnpm test           # release script tests
 ```
 
-`pnpm test` runs `node --test scripts/release.test.mjs scripts/rolling-release.test.mjs`.
-The drain test in `release.test.mjs` depends on timing and can fail on a
-heavily loaded machine. Run it again before you treat a failure as a
-regression.
+`pnpm build` runs `next build`, then writes WebP widths of the screenshots
+(`packages/client/scripts/optimize-images.mjs`, about a minute). An export has
+no image optimizer, so `src/lib/image-loader.ts` points `next/image` at those
+WebP files.
 
 There is no lint step. The repository has no ESLint dependency and no ESLint
 config.
@@ -59,37 +65,37 @@ HATCHKIT_LOCAL_DEV=0 pnpm --filter @starter/client exec next dev --port <free po
 ```
 
 The `client` entry in `.claude/launch.json` starts the preview server this
-way on port 57342.
+way on port 57342. The `worker` entry serves the last `pnpm build` output
+with `wrangler dev` on port 51873, with the same asset rules as production
+(`_headers`, the 404 page, trailing slashes).
 
 ## Every Push to `main` Is a Production Release
 
-A push to `main` builds an image and deploys it to https://ricoslabs.com.
-This includes commits that change only documentation. Commit locally, and
-push only when the operator asks for a release.
+A push to `main` uploads a new version of the Worker and activates it on
+https://ricoslabs.com. This includes commits that change only documentation.
+Commit locally, and push only when the operator asks for a release.
 
-`.github/workflows/deploy.yml` (Build & Release) builds an image tagged with
-the full commit SHA. Its deploy job runs `scripts/rolling-release.mjs`, which
-moves the `latest` tag to that image, queues the Coolify app with a signed
-hook and checks that the public site serves the commit. The contract, the gate
-variable `RICOS_LABS_ROLLOUT_MODE` and the recovery steps are in
-`scripts/ROLLING_RELEASE.md`. Read it before you change anything it names.
+`.github/workflows/deploy.yml` (Build & Release) builds the export, carries
+the hashed chunks of the two releases before it, runs
+`wrangler versions upload --tag <sha>`, then activates that version and
+checks that the public site serves the commit. The routes, the gate variable
+`RICOS_LABS_ROLLOUT_MODE`, the secrets and the rollback are in
+`docs/RELEASE.md`. Read it before you change anything it names.
 
-- Run the contract tests (`pnpm test`) before a push that changes `scripts/`, `Dockerfile`,
-  `drain.cjs` or `.github/workflows/deploy.yml`. The build job runs them too.
-- Never commit a file at `.hatchkit/deploy-webhook`. The signed deploy hook
-  names that path as the changed file.
-- `docker-compose.yml` is the rollback file of the retired Compose app.
-  Keep its image digest.
-- The controller identifies a release by `/version.json` and by the
-  `build-commit` meta tag on the homepage. Both come from the Docker build
-  argument `DEPLOYMENT_ID`. Keep both, and keep `/version.json` uncached.
-- The image listens on port 6457. `drain.cjs` holds the server open for 20
-  seconds after SIGTERM so that the old container can hand over.
+- Run `pnpm test` before a push that changes `scripts/`,
+  `packages/client/public/_headers`, `packages/client/wrangler.jsonc` or
+  `.github/workflows/deploy.yml`. The build job runs it too.
+- `packages/client/wrangler.jsonc` stays assets-only: no `main`,
+  `run_worker_first`, `cache` or `routes`.
+- The workflow identifies a release by `/version.json` and by the
+  `build-commit` meta tag on the homepage. Both come from
+  `NEXT_PUBLIC_BUILD_COMMIT`. Keep both, and keep `/version.json` uncached
+  (`public/_headers`).
 - `node scripts/verify-release.mjs <full-sha>` checks which commit the public
   site serves. It only sends GET requests.
 
 `.github/workflows/lighthouse.yml` runs Lighthouse CI on pull requests and on
-manual dispatch, against `/` and `/imprint`. A score below 0.95 for
+manual dispatch, against `/` and `/imprint` served by `wrangler dev`. A score below 0.95 for
 accessibility, best practices or SEO fails the run. Performance below 0.95 is
 a warning.
 
@@ -97,16 +103,19 @@ a warning.
 
 ```
 packages/client/
-  next.config.mjs      — standalone output, deployment id, /version.json header,
-                         Plausible script rewrite, local-dev plugin
+  next.config.mjs      — static export, custom image loader, local-dev plugin
+  wrangler.jsonc       — the assets-only Worker ricos-labs-client
+  image-sizes.mjs      — image widths shared by Next and optimize-images.mjs
   tailwind.config.ts   — theme tokens mapped to CSS variables
   components.json      — shadcn/ui CLI config (no shadcn component is added yet)
+  public/_headers      — response headers of the Worker (version.json no-store)
   public/brand/        — logo files
   public/images/       — project screenshots, written by `pnpm screenshots`
+  scripts/             — build step: optimize-images.mjs
   src/
     app/               — App Router: layout, landing page, imprint/, metadata
                          routes (manifest, robots, sitemap, Open Graph and
-                         Twitter image), kestrel/k/ (Plausible event proxy)
+                         Twitter image), all static
     components/
       landing/         — sections of the landing page
       three/           — react-three-fiber scenes (client components)
@@ -114,22 +123,19 @@ packages/client/
       brand/           — the brand mark
       providers/       — theme provider
     lib/               — site-config.ts, projects-data.ts, brand.ts,
-                         structured-data.ts, hooks (use-in-view,
-                         use-reduced-motion), utils.ts
+                         structured-data.ts, image-loader.ts, hooks
+                         (use-in-view, use-reduced-motion), utils.ts
     styles/globals.css — Tailwind layers and the CSS variables of both themes
 
 scripts/
-  ROLLING_RELEASE.md             — release contract
-  rolling-release.mjs            — rollout controller entry, logic in lib/rolling-release.mjs
+  carry-static.mjs               — carries old hashed chunks into an upload (from hatchkit)
   verify-release.mjs             — public check of the serving commit
-  write-version.mjs              — writes public/version.json during the Docker build
-  release.test.mjs               — tests for the image identity, drain and verify contract
-  rolling-release.test.mjs       — tests for the rollout controller
+  write-version.mjs              — writes out/version.json after the build
+  release.test.mjs               — tests for the release identity and verify contract
   capture-project-screenshots.mjs
 
-Dockerfile, drain.cjs  — production image and its shutdown drain
-docker-compose.yml     — rollback file of the retired Compose app
 BRAND.md               — brand kit: assets, palette, type, voice
+docs/RELEASE.md        — release contract, routes, rollback
 docs/dev-setup.md      — host setup for the local-dev URL
 ```
 
@@ -144,16 +150,15 @@ Where site content lives:
 ## Environment
 
 - `packages/client/.env.production` is committed. Its values are encrypted
-  with dotenvx, and the public key is at the top of the file.
-- The Docker build decrypts the file with the BuildKit secret
-  `dotenvx_private_key`, which the workflow fills from the GitHub secret
-  `DOTENV_PRIVATE_KEY_PRODUCTION`. The runtime stage never receives the key.
+  with dotenvx, and the public key is at the top of the file. It holds no
+  value that the build needs, so the workflow does not decrypt it.
 - Never commit `.env.keys`, `.env` or `.env.local`. `.gitignore` lists them.
 - A variable that the browser reads needs the `NEXT_PUBLIC_` prefix. Next
-  writes its value into the client bundle at build time.
-- The site code reads two build variables: `NEXT_DEPLOYMENT_ID` and
-  `NEXT_PUBLIC_BUILD_COMMIT`. The Dockerfile sets both from `DEPLOYMENT_ID`.
-  Both are unset in local development.
+  writes its value into the client bundle at build time. A build that needs
+  an encrypted value must decrypt it in the workflow
+  (`dotenvx run -- pnpm build` with `DOTENV_PRIVATE_KEY_PRODUCTION`).
+- The site code reads one build variable, `NEXT_PUBLIC_BUILD_COMMIT`. The
+  workflow sets it to the commit SHA. It is unset in local development.
 - `packages/client/.env.example` lists the variables that the code reads.
   Nothing loads the file, and local development needs no variable.
 
