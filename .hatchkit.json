@@ -9,12 +9,12 @@
   "mlServices": [],
   "s3Provider": "none",
   "deployTarget": "existing",
-  "deploymentMode": "coolify",
+  "deploymentMode": "cloudflare",
   "ports": {
     "server": 3000,
     "client": 3001
   },
-  "surfaces": "client-only",
+  "surfaces": "static",
   "localDev": {
     "slug": "ricos-labs"
   }

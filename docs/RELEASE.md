@@ -87,5 +87,8 @@ countries are right without help from this site.
   Each one turns page or asset requests into counted Worker requests.
 - Add a `routes` key to `wrangler.jsonc`.
 - Use `wrangler deploy` for the site in CI. Upload, then activate.
+- Run `hatchkit cloudflare` in this repo. It writes a root `wrangler.jsonc`
+  and rewrites `_headers`; this repo's Worker config, `_headers` and workflow
+  are written by hand.
 - Proxy Plausible through this site to get past content blockers. Rico
   decided on 2026-10-18 that a visitor who blocks tracking stays untracked.

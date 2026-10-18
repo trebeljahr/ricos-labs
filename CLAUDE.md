@@ -93,6 +93,11 @@ checks that the public site serves the commit. The routes, the gate variable
   (`public/_headers`).
 - `node scripts/verify-release.mjs <full-sha>` checks which commit the public
   site serves. It only sends GET requests.
+- `.hatchkit.json` says `deploymentMode: "cloudflare"`, `surfaces: "static"`.
+  `packages/client/wrangler.jsonc`, `packages/client/public/_headers` and
+  `.github/workflows/deploy.yml` are written by hand, not by hatchkit. Never
+  run `hatchkit cloudflare` here: it writes a root `wrangler.jsonc` and
+  rewrites `_headers`. `hatchkit sync` and `regen-infra` leave them alone.
 
 `.github/workflows/lighthouse.yml` runs Lighthouse CI on pull requests and on
 manual dispatch, against `/` and `/imprint` served by `wrangler dev`. A score below 0.95 for
