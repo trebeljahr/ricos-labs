@@ -9,19 +9,16 @@ while `RICOS_LABS_ROLLOUT_MODE` is `automatic`.
 One Workers route on the zone `ricoslabs.com`, `ricoslabs.com/*`, attaches
 the Worker `ricos-labs-client`. It serves the export in
 `packages/client/out`. The Worker has assets only and no script, so no
-request counts toward the Workers Free daily limit. There is no Custom Domain
-and no DNS change: the apex A and AAAA records stay proxied and point at the
-old Coolify server, which no longer receives requests while the route exists.
+request counts toward the Workers Free daily limit. There is no Custom Domain.
+The route needs a proxied DNS record, so the apex A and AAAA records stay
+proxied; their address is the old Coolify server, which no longer serves
+ricoslabs.com, and it never receives requests while the route exists.
 
 The route was made with the Cloudflare API. `wrangler.jsonc` has no `routes`
 key, so a deploy never changes it, and the CI token cannot.
 
 The zone setting Always Use HTTPS is on, because a Worker answers plain HTTP
-itself. It also redirects Let's Encrypt's HTTP-01 requests, so Traefik can no
-longer renew its certificate for ricoslabs.com, and an ACME route to the
-origin would not help. That certificate is valid until 2026-12-09, and with
-SSL mode Full Cloudflare accepts an expired origin certificate, so the
-rollback below works either way.
+itself.
 
 ## Release
 
@@ -70,9 +67,11 @@ year.
   newest 100 uploads. Or `pnpm exec wrangler rollback --config
   packages/client/wrangler.jsonc` from a signed-in machine. A version keeps
   its own files, so this is complete.
-- The move to Workers (until the Coolify app is deleted): delete the route
-  `ricoslabs.com/*`. The Coolify app answers again within about 8 seconds,
-  with the last image it pulled.
+
+The Coolify app that served the site until 2026-10-18 was deleted that day.
+Deleting the route `ricoslabs.com/*` now takes the site down: the origin
+answers 503. Commit `a902cdb` holds the old Dockerfile and release
+controller.
 
 ## Plausible
 
@@ -90,5 +89,3 @@ countries are right without help from this site.
 - Use `wrangler deploy` for the site in CI. Upload, then activate.
 - Proxy Plausible through this site to get past content blockers. Rico
   decided on 2026-10-18 that a visitor who blocks tracking stays untracked.
-- Commit a file at `.hatchkit/deploy-webhook`. It was the Coolify hook's watch
-  path.
