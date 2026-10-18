@@ -55,7 +55,7 @@ carries the `/_next/static/**` files of the two releases before it:
 `/release-assets.json` lists each release's files with their sha256, and the
 build downloads the ones it lacks from the live site. The script is a copy of
 hatchkit's `cli/src/templates/client-host/scripts/carry-static.mjs` at hatchkit
-commit 2006ddb; its tests live there.
+commit c70206f; its tests live there.
 
 `public/_headers` has no long cache rule for `/_next/static/*`: such a rule
 also applies to 404 responses, so a browser would keep a missing chunk for a
