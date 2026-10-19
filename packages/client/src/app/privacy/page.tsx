@@ -179,9 +179,9 @@ export default function PrivacyPage() {
               </p>
               <p>
                 The report holds the page URL, the referrer and how long the page
-                took to load, including Largest Contentful Paint, Interaction to
-                Next Paint and Cumulative Layout Shift. Cloudflare shows me totals
-                by page, country, browser and device type.
+                took to load. The timings include Largest Contentful Paint,
+                Interaction to Next Paint and Cumulative Layout Shift. Cloudflare
+                shows me totals by page, country, browser and device type.
               </p>
               <p>
                 The script sets no cookies and stores nothing on your device. It
