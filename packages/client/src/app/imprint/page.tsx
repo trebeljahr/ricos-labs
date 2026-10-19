@@ -106,6 +106,23 @@ export default function ImprintPage() {
 
             <section>
               <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                Data Protection
+              </h2>
+              <p className="mt-3 text-muted-foreground">
+                The{" "}
+                <Link
+                  href="/privacy"
+                  className="underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
+                >
+                  privacy policy
+                </Link>{" "}
+                lists every server your browser contacts on this site and what
+                each one receives.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                 Person Responsible for Content (§ 18 (2) MStV)
               </h2>
               <Address />

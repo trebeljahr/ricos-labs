@@ -38,6 +38,10 @@ export const siteConfig = {
     },
   },
 
+  privacy: {
+    updatedAt: "2026-10-19",
+  },
+
   socials: {
     portfolio: "https://portfolio.trebeljahr.com",
     blog: "https://ricos.site",

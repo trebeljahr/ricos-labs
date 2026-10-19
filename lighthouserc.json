@@ -6,7 +6,8 @@
       "startServerReadyTimeout": 60000,
       "url": [
         "http://localhost:3947/",
-        "http://localhost:3947/imprint"
+        "http://localhost:3947/imprint",
+        "http://localhost:3947/privacy"
       ],
       "numberOfRuns": 1,
       "settings": {

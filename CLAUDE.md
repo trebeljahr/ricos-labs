@@ -1,7 +1,7 @@
 # ricos-labs
 
 The Ricos Labs company website, https://ricoslabs.com. It is a Next.js site
-with a landing page and an imprint page, exported as static files and served
+with a landing page, an imprint page and a privacy page, exported as static files and served
 by Cloudflare Workers. This repository has no backend service, no database
 and no authentication.
 
@@ -100,7 +100,7 @@ checks that the public site serves the commit. The routes, the gate variable
   rewrites `_headers`. `hatchkit sync` and `regen-infra` leave them alone.
 
 `.github/workflows/lighthouse.yml` runs Lighthouse CI on pull requests and on
-manual dispatch, against `/` and `/imprint` served by `wrangler dev`. A score below 0.95 for
+manual dispatch, against `/`, `/imprint` and `/privacy` served by `wrangler dev`. A score below 0.95 for
 accessibility, best practices or SEO fails the run. Performance below 0.95 is
 a warning.
 
@@ -119,7 +119,7 @@ packages/client/
   public/images/       — project screenshots, written by `pnpm screenshots`
   scripts/             — build step: optimize-images.mjs
   src/
-    app/               — App Router: layout, landing page, imprint/, metadata
+    app/               — App Router: layout, landing page, imprint/, privacy/, metadata
                          routes (manifest, robots, sitemap, Open Graph and
                          Twitter image), all static
     components/
@@ -148,7 +148,11 @@ docs/dev-setup.md      — host setup for the local-dev URL
 Where site content lives:
 
 - Company name, contact addresses, legal entity and SEO text: `src/lib/site-config.ts`.
-  The imprint page, the metadata routes and the JSON-LD read from it.
+  The imprint page, the privacy page, the metadata routes and the JSON-LD
+  read from it.
+- `/privacy` names every host a visitor's browser contacts. Adding a
+  third-party request (a script, a font, an image, an embed) means updating
+  that page and `siteConfig.privacy.updatedAt` in the same change.
 - Projects on the landing page: `featuredProjects` and `otherProjects` in
   `src/lib/projects-data.ts`. Each entry names an image in `public/images/`.
 - Colors and type: `BRAND.md`, `src/styles/globals.css` and `tailwind.config.ts`.

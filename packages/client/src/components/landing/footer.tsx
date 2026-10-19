@@ -24,6 +24,7 @@ export function Footer() {
               Blog
             </a>
             <Link href="/imprint" className="hover:text-foreground">Imprint</Link>
+            <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
             <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-foreground">
               {siteConfig.contact.email}
             </a>
