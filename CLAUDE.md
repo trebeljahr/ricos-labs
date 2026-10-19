@@ -115,6 +115,7 @@ packages/client/
   components.json      — shadcn/ui CLI config (no shadcn component is added yet)
   public/_headers      — response headers of the Worker (version.json no-store)
   public/brand/        — logo files
+  public/hdri/         — the hero scene's environment map (CC0, source in hero-scene.tsx)
   public/images/       — project screenshots, written by `pnpm screenshots`
   scripts/             — build step: optimize-images.mjs
   src/
