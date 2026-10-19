@@ -4,9 +4,9 @@ import { Divider } from "@/components/landing/divider";
 import { Footer } from "@/components/landing/footer";
 import { Hero } from "@/components/landing/hero";
 import { Nav } from "@/components/landing/nav";
+import { PastWork } from "@/components/landing/past-work";
 import { ProjectsFeatured } from "@/components/landing/projects-featured";
 import { ProjectsGrid } from "@/components/landing/projects-grid";
-import { TrustedBy } from "@/components/landing/trusted-by";
 import { getLandingPageJsonLd, stringifyJsonLd } from "@/lib/structured-data";
 
 export default function LandingPage() {
@@ -25,7 +25,7 @@ export default function LandingPage() {
         <ProjectsGrid />
         <Divider />
         <Capabilities />
-        <TrustedBy />
+        <PastWork />
         <Contact />
       </main>
       <Footer />

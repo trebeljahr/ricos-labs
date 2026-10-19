@@ -125,7 +125,6 @@ packages/client/
     components/
       landing/         — sections of the landing page
       three/           — react-three-fiber scenes (client components)
-      logos/           — company logos as React SVG components
       brand/           — the brand mark
       providers/       — theme provider
     lib/               — site-config.ts, projects-data.ts, brand.ts,
