@@ -31,10 +31,15 @@ export async function optimizeImages({
     const input = sharp(join(source, file));
     for (const width of widths) {
       const path = join(target, `${name}-${width}.webp`);
+      // Keep the full-size, high-detail demo screenshot below 1 MB without
+      // changing its dimensions or the smaller responsive variants.
+      const webpOptions = name === "r3f-demos" && width === 3840
+        ? { quality: 60, effort: 6 }
+        : { quality: QUALITY };
       await input
         .clone()
         .resize({ width, withoutEnlargement: true })
-        .webp({ quality: QUALITY })
+        .webp(webpOptions)
         .toFile(path);
       written.push(path);
     }

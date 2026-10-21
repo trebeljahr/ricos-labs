@@ -5,8 +5,7 @@ import { Footer } from "@/components/landing/footer";
 import { Nav } from "@/components/landing/nav";
 import { siteConfig } from "@/lib/site-config";
 
-const description = `Legal disclosure (§ 5 DDG, § 18 (2) MStV) for ${siteConfig.legalName} and ${siteConfig.domain}.`;
-const openGraphDescription = `Legal disclosure for ${siteConfig.legalName} and ${siteConfig.domain}.`;
+const description = `Legal disclosure for ${siteConfig.legalName} and ${siteConfig.domain}. Operator details, contact email, and notices under § 5 DDG and § 18 (2) MStV.`;
 const image = {
   url: siteConfig.seo.image.path,
   width: siteConfig.seo.image.width,
@@ -25,14 +24,14 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     siteName: siteConfig.name,
     title: `Imprint | ${siteConfig.name}`,
-    description: openGraphDescription,
+    description,
     url: "/imprint",
     images: [image],
   },
   twitter: {
     card: "summary_large_image",
     title: `Imprint | ${siteConfig.name}`,
-    description: openGraphDescription,
+    description,
     images: [
       {
         url: siteConfig.seo.image.path,
