@@ -77,9 +77,6 @@ export function getLandingPageJsonLd(): JsonLd {
         url: siteConfig.url,
         image: absoluteUrl(siteConfig.seo.image.path),
         description: siteConfig.seo.ogDescription,
-        provider: {
-          "@id": organizationId,
-        },
         areaServed: ["Europe", "United States", "Worldwide"],
         knowsAbout: [...siteConfig.seo.keywords],
         priceRange: "$$",
