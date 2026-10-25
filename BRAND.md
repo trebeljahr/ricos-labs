@@ -10,11 +10,19 @@ direct rather than corporate.
 - Wordmark: `packages/client/public/brand/ricos-labs-wordmark.svg`
 - App icon / favicon mark: `packages/client/public/brand/ricos-labs-mark.svg`
 - App Router favicon: `packages/client/src/app/icon.png`
+- Steam creator avatar master: `packages/client/public/brand/ricos-labs-steam-avatar.png`
+- Steam upload export: `packages/client/public/brand/ricos-labs-steam-avatar-upload.png`
 - Reusable React mark: `packages/client/src/components/brand/brand-mark.tsx`
 
 Use the app icon for favicons, avatars, social previews, and compact UI marks.
 Use the lockup in proposals, decks, README imagery, and places where the studio
 name needs to read without surrounding context.
+
+The Steam avatar uses an opaque grey field with the flask's black outline.
+The upload export has identical decoded pixels and lossless PNG compression
+to fit Steam's 1,024 KB limit. It was uploaded and checked on the shared
+Ricos Labs creator homepage on 25 October 2026. Keep the transparent favicon
+separate; Steam rendered its transparent field black.
 
 ## Palette
 
