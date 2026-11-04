@@ -92,7 +92,7 @@ export const otherProjects: Project[] = [
     source: "https://github.com/trebeljahr/ricos.site",
   },
   {
-    title: "sprite-tools",
+    title: "Sprite Tools",
     url: "https://sprites.trebeljahr.com",
     tagline: "Game-ready 2D sprite pipelines in web, CLI, and MCP form",
     description:
