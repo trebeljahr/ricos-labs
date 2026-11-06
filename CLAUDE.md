@@ -138,6 +138,7 @@ scripts/
   write-version.mjs              — writes out/version.json after the build
   release.test.mjs               — tests for the release identity and verify contract
   capture-project-screenshots.mjs
+  marketing/                     — README screenshots and GitHub social preview (docs/marketing/README.md)
 
 BRAND.md               — brand kit: assets, palette, type, voice
 docs/RELEASE.md        — release contract, routes, rollback

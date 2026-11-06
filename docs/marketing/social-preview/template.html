@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ricoslabs.com social preview</title>
+<!-- Rendered at 1280x640 by scripts/marketing/render-social-preview.mjs (?v=a|b|c).
+     Palette and type from BRAND.md: Instrument Serif, Inter, JetBrains Mono. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=block" rel="stylesheet">
+<style>
+  :root {
+    --ink: #12141e;
+    --paper: #f6efe2;
+    --copper: #d95d3e;
+    --cyan: #35c4d8;
+    --violet: #6f4be8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 640px; overflow: hidden; }
+  body { font-family: Inter, sans-serif; -webkit-font-smoothing: antialiased; }
+  .card { position: relative; width: 1280px; height: 640px; overflow: hidden; }
+  .variant { display: none; }
+  body[data-v="a"] .a, body[data-v="b"] .b, body[data-v="c"] .c { display: block; }
+  .serif { font-family: "Instrument Serif", serif; font-weight: 400; letter-spacing: -0.01em; }
+  .mono { font-family: "JetBrains Mono", monospace; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; }
+  /* The flask from src/app/icon.png, the mark the site's nav and favicon use.
+     On dark cards it sits on a Warm Paper field, like the Steam avatar. */
+  .mark { display: block; width: 88px; height: 88px; border-radius: 20px; padding: 10px; flex: none; }
+  .mark img { display: block; width: 100%; height: 100%; }
+  .b .mark, .c .mark { background: var(--paper); }
+  .shot { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .lockup { display: flex; align-items: center; gap: 22px; }
+  .lockup .serif { font-size: 60px; line-height: 1; }
+  .lockup .llc { font-size: 20px; opacity: 0.55; }
+
+  /* A: screenshot-led, warm paper */
+  .a { background: var(--paper); color: var(--ink); }
+  .a .copy { position: absolute; left: 72px; top: 72px; bottom: 72px; width: 520px; display: flex; flex-direction: column; justify-content: space-between; }
+  .a .eyebrow { font-size: 20px; color: var(--copper); }
+  .a h1 { font-size: 76px; line-height: 1.02; margin-top: 18px; }
+  .a h1 em { font-style: italic; }
+  .a .url { font-size: 22px; color: rgba(18, 20, 30, 0.6); }
+  .a .frame { position: absolute; left: 640px; top: 72px; width: 720px; height: 600px; overflow: hidden; border-radius: 16px; border: 1px solid rgba(18, 20, 30, 0.14); box-shadow: 0 40px 80px -36px rgba(18, 20, 30, 0.5); background: var(--paper); }
+  .a .frame { background: var(--ink); }
+  /* 1600 px wide page at 0.57: the whole hero, headline and glass scene. */
+  .a .frame img { position: absolute; left: -90px; top: 0; width: 912px; height: 570px; }
+
+  /* B: typographic, deep ink */
+  .b { color: var(--paper); background: radial-gradient(60% 70% at 82% 14%, #26304a 0%, var(--ink) 52%, #080912 100%); }
+  .b .inner { position: absolute; inset: 72px; display: flex; flex-direction: column; justify-content: space-between; }
+  .b .eyebrow { font-size: 22px; color: var(--copper); }
+  .b h1 { font-size: 150px; line-height: 0.95; margin-top: 14px; }
+  .b .tagline { font-size: 48px; line-height: 1.15; margin-top: 18px; color: rgba(246, 239, 226, 0.88); }
+  .b .tagline em { font-style: italic; color: var(--cyan); }
+  .b .foot { display: flex; justify-content: space-between; align-items: center; font-size: 20px; color: rgba(246, 239, 226, 0.6); }
+  .b .top { display: flex; justify-content: space-between; align-items: flex-start; }
+
+  /* C: real project screenshots on the paper grid, dark band */
+  .c { background: var(--ink); color: var(--paper); }
+  .c .grid { position: absolute; left: 0; right: 0; top: 0; height: 404px; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 4px; }
+  .c .grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .c .band { position: absolute; left: 0; right: 0; bottom: 0; height: 236px; padding: 0 72px 64px; display: flex; align-items: flex-end; justify-content: space-between; background: var(--ink); border-top: 4px solid var(--copper); }
+  .c .band .tagline { font-size: 36px; color: rgba(246, 239, 226, 0.85); line-height: 1.2; text-align: right; white-space: nowrap; }
+</style>
+</head>
+<body>
+  <section class="card variant a">
+    <div class="copy">
+      <div>
+        <div class="lockup"><span class="mark"><img src="../../../packages/client/src/app/icon.png" alt=""></span><span class="serif">Ricos Labs</span></div>
+      </div>
+      <div>
+        <p class="mono eyebrow">ricoslabs.com</p>
+        <h1 class="serif">Open-source <em>games</em>, tools and interactive art.</h1>
+      </div>
+      <p class="mono url">Ricos Labs LLC</p>
+    </div>
+    <div class="frame"><img src="../screenshots/home-dark.jpg" alt=""></div>
+  </section>
+
+  <section class="card variant b">
+    <div class="inner">
+      <div class="top">
+        <p class="mono eyebrow">An independent studio</p>
+        <span class="mark"><img src="../../../packages/client/src/app/icon.png" alt=""></span>
+      </div>
+      <div>
+        <h1 class="serif">Ricos Labs</h1>
+        <p class="serif tagline">Multiplayer <em>games</em>, real-time apps and developer tools.</p>
+      </div>
+      <p class="foot"><span class="mono">ricoslabs.com</span><span class="mono">Ricos Labs LLC</span></p>
+    </div>
+  </section>
+
+  <section class="card variant c">
+    <div class="grid">
+      <img src="../../../packages/client/public/images/tiao.png" alt="">
+      <img src="../../../packages/client/public/images/extinction-protocol.png" alt="">
+      <img src="../../../packages/client/public/images/raptor.png" alt="">
+      <img src="../../../packages/client/public/images/hatchkit.png" alt="">
+      <img src="../../../packages/client/public/images/fractal-garden.png" alt="">
+      <img src="../../../packages/client/public/images/beauty.png" alt="">
+      <img src="../../../packages/client/public/images/r3f-demos.png" alt="">
+      <img src="../../../packages/client/public/images/sprite-tools.png" alt="">
+    </div>
+    <div class="band">
+      <div class="lockup"><span class="mark"><img src="../../../packages/client/src/app/icon.png" alt=""></span><span class="serif">Ricos Labs</span></div>
+      <p class="serif tagline">Open-source games, tools and interactive art</p>
+    </div>
+  </section>
+
+  <script>
+    document.body.dataset.v = new URLSearchParams(location.search).get("v") || "a";
+  </script>
+</body>
+</html>

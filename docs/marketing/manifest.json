@@ -1,0 +1,130 @@
+{
+  "images": [
+    {
+      "file": "screenshots/grid-light.jpg",
+      "width": 3200,
+      "height": 2000,
+      "bytes": 491147,
+      "sha256": "bb89352e23486c31245aef6f9c00d031f6a4086fc86b2bbbd9c918cbc33ebe0e",
+      "date": "2026-11-06",
+      "source": {
+        "url": "https://ricoslabs.com/",
+        "viewport": "1600x1000",
+        "deviceScaleFactor": 2,
+        "theme": "light",
+        "tool": "scripts/marketing/capture-screenshots.mjs (Playwright Chromium)"
+      }
+    },
+    {
+      "file": "screenshots/home-dark.jpg",
+      "width": 3200,
+      "height": 2000,
+      "bytes": 456928,
+      "sha256": "dbfa5528242a9fa41d3ece7dc661d3209c46b784cbc8ba7e4ab840f3afc074fb",
+      "date": "2026-11-06",
+      "source": {
+        "url": "https://ricoslabs.com/",
+        "viewport": "1600x1000",
+        "deviceScaleFactor": 2,
+        "theme": "dark",
+        "tool": "scripts/marketing/capture-screenshots.mjs (Playwright Chromium)"
+      }
+    },
+    {
+      "file": "screenshots/home-light.jpg",
+      "width": 3200,
+      "height": 2000,
+      "bytes": 474234,
+      "sha256": "a4d23a8ea60a0b8f0ea0241589698ea7af3a9ce2553bb692eac315a508b84c66",
+      "date": "2026-11-06",
+      "source": {
+        "url": "https://ricoslabs.com/",
+        "viewport": "1600x1000",
+        "deviceScaleFactor": 2,
+        "theme": "light",
+        "tool": "scripts/marketing/capture-screenshots.mjs (Playwright Chromium)"
+      }
+    },
+    {
+      "file": "screenshots/home-mobile-light.jpg",
+      "width": 780,
+      "height": 1688,
+      "bytes": 169645,
+      "sha256": "4bd42d259dcd530be2f8fd2fe791735de1d4bc5c43b48f8e24b19c00e406a1ea",
+      "date": "2026-11-06",
+      "source": {
+        "url": "https://ricoslabs.com/",
+        "viewport": "390x844",
+        "deviceScaleFactor": 2,
+        "theme": "light",
+        "tool": "scripts/marketing/capture-screenshots.mjs (Playwright Chromium)"
+      }
+    },
+    {
+      "file": "screenshots/projects-dark.jpg",
+      "width": 3200,
+      "height": 2000,
+      "bytes": 302999,
+      "sha256": "68a8a86b2b20812240f8af42c8b8ac4922c54a8d56c0fd61a00e301935ddbe52",
+      "date": "2026-11-06",
+      "source": {
+        "url": "https://ricoslabs.com/",
+        "viewport": "1600x1000",
+        "deviceScaleFactor": 2,
+        "theme": "dark",
+        "tool": "scripts/marketing/capture-screenshots.mjs (Playwright Chromium)"
+      }
+    },
+    {
+      "file": "screenshots/projects-light.jpg",
+      "width": 3200,
+      "height": 2000,
+      "bytes": 304688,
+      "sha256": "909f01ae0ea95370fde847b86cae76ae0daa0dd11710c66efb08920278f39398",
+      "date": "2026-11-06",
+      "source": {
+        "url": "https://ricoslabs.com/",
+        "viewport": "1600x1000",
+        "deviceScaleFactor": 2,
+        "theme": "light",
+        "tool": "scripts/marketing/capture-screenshots.mjs (Playwright Chromium)"
+      }
+    },
+    {
+      "file": "social-preview/social-preview-a.png",
+      "width": 1280,
+      "height": 640,
+      "bytes": 257674,
+      "sha256": "b60f92eca462660daf267357587c097f5a6db911127502d9c126962180d7e8d4",
+      "date": "2026-11-06",
+      "source": {
+        "template": "social-preview/template.html?v=a",
+        "tool": "scripts/marketing/render-social-preview.mjs (Playwright Chromium)"
+      }
+    },
+    {
+      "file": "social-preview/social-preview-b.png",
+      "width": 1280,
+      "height": 640,
+      "bytes": 229823,
+      "sha256": "d6689b94b3ebfda5e9edf090e6220ce62ce106654228f074d40979ab00d31316",
+      "date": "2026-11-06",
+      "source": {
+        "template": "social-preview/template.html?v=b",
+        "tool": "scripts/marketing/render-social-preview.mjs (Playwright Chromium)"
+      }
+    },
+    {
+      "file": "social-preview/social-preview-c.png",
+      "width": 1280,
+      "height": 640,
+      "bytes": 419852,
+      "sha256": "3f00eb428993f182a27fded47a6c147aba20cbe395ae10d1668791e065ac3a70",
+      "date": "2026-11-06",
+      "source": {
+        "template": "social-preview/template.html?v=c",
+        "tool": "scripts/marketing/render-social-preview.mjs (Playwright Chromium)"
+      }
+    }
+  ]
+}
