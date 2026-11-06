@@ -2,6 +2,17 @@
   "name": "ricos-labs",
   "version": "0.1.0",
   "private": true,
+  "description": "Website of Ricos Labs LLC: the studio's games, real-time apps and developer tools, as a static Next.js site on Cloudflare Workers.",
+  "author": "Rico Trebeljahr",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://ricoslabs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trebeljahr/ricos-labs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trebeljahr/ricos-labs/issues"
+  },
   "packageManager": "pnpm@11.1.0",
   "engines": {
     "node": ">=22.0.0"
@@ -12,7 +23,9 @@
     "preview": "wrangler dev --config packages/client/wrangler.jsonc",
     "test": "node --test scripts/release.test.mjs",
     "typecheck": "pnpm -r run typecheck",
-    "screenshots": "node scripts/capture-project-screenshots.mjs"
+    "screenshots": "node scripts/capture-project-screenshots.mjs",
+    "marketing:screenshots": "node scripts/marketing/capture-screenshots.mjs",
+    "marketing:social": "node scripts/marketing/render-social-preview.mjs && node scripts/marketing/write-manifest.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
