@@ -7,7 +7,7 @@
 
 The website of Ricos Labs LLC, the studio through which Rico Trebeljahr ships games, real-time apps and developer tools. It answers the questions a possible client asks first: what has the studio shipped, what can it build, and how do I reach it.
 
-The page shows 15 projects. Each card links to the live product, and 14 of them also link to their source code. Below the projects are the studio's capabilities, its past clients and a contact address.
+The page shows 14 projects. Each card links to the live product, and 13 of them also link to their source code. Below the projects are the studio's capabilities, its past clients and a contact address.
 
 Visit **[ricoslabs.com](https://ricoslabs.com)**. For everything Rico makes, including his writing and explorables, the hub is [ricos.site/projects](https://ricos.site/projects).
 
@@ -16,7 +16,7 @@ Visit **[ricoslabs.com](https://ricoslabs.com)**. For everything Rico makes, inc
 ![The "More from the shelf" grid on ricoslabs.com, with cards for Mesozoic Protocol, Hatchkit, Collection of Beauty, Fractal Garden, Interactive 3D Demos and Sprite Tools.](docs/marketing/screenshots/grid-light.jpg)
 
 - A hero with a WebGL plasma ball whose filaments follow the pointer. It renders only when the visitor allows motion.
-- Three featured projects (Tiao, Raptor Runner, ricos.site) and a grid of 12 more.
+- Three featured projects (Tiao, Raptor Runner, ricos.site) and a grid of 11 more.
 - Six capability areas, from real-time multiplayer to tooling.
 - Past clients as plain text, with what was built for each.
 - A light and a dark theme, plus `/imprint` and `/privacy`.

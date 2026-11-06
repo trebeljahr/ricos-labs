@@ -85,12 +85,6 @@ const targets = [
     cover: cover("sprite-tools", "Game-ready 2D asset pipeline", "Tools"),
   },
   {
-    slug: "gamedev",
-    url: "https://gamedev.trebeljahr.com",
-    wait: 3000,
-    cover: cover("GameDev Asset Library", "Browsable CC0 game assets", "Tools"),
-  },
-  {
     slug: "extinction-protocol",
     wait: 1000,
     visual: visual("extinction-protocol"),

@@ -102,16 +102,6 @@ export const otherProjects: Project[] = [
     source: "https://github.com/trebeljahr/sprite-tools",
   },
   {
-    title: "GameDev Asset Library",
-    url: "https://gamedev.trebeljahr.com",
-    tagline: "Browsable CC0 game-asset library and preview system",
-    description:
-      "A browsable library of CC0 game assets with 3D preview, audio playback, and metadata search.",
-    image: "/images/gamedev.png",
-    tech: ["Next.js", "3D Assets", "R2", "Audio"],
-    source: "https://github.com/trebeljahr/gamedev",
-  },
-  {
     title: "Minecraft Clone",
     url: "https://mc.trebeljahr.com",
     tagline: "Procedural voxel world with biomes, caves, and infinite chunks",
